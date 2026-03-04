@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lazzlly | LP制作ポートフォリオ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --lime: #C8F135;
+      --coral: #FF6B6B;
+      --sky: #5BE0FA;
+      --ink: #0F0F0F;
+      --paper: #F7F5F0;
+      --card-bg: #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      mix-blend-mode: normal;
+    }
+
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      display: inline-block;
+      background: var(--lime);
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-left: 2px;
+    }
+
+    nav a {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      text-decoration: none;
+      margin-left: 32px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0; right: 0;
+      height: 2px;
+      background: var(--coral);
+      transform: scaleX(0);
+      transition: transform 0.2s;
+    }
+
+    nav a:hover::after { transform: scaleX(1); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* big decorative circles */
+    .deco-circle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .deco-circle-1 {
+      width: 520px; height: 520px;
+      background: var(--lime);
+      top: -100px; right: -120px;
+      opacity: 0.55;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .deco-circle-2 {
+      width: 300px; height: 300px;
+      background: var(--sky);
+      bottom: -80px; left: 30%;
+      opacity: 0.45;
+      animation: float 10s ease-in-out infinite reverse;
+    }
+
+    .deco-circle-3 {
+      width: 160px; height: 160px;
+      background: var(--coral);
+      top: 40%; right: 20%;
+      opacity: 0.35;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-24px) rotate(5deg); }
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--ink);
+      color: var(--lime);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-tag::before {
+      content: '●';
+      font-size: 8px;
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+
+    .hero-name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(64px, 10vw, 120px);
+      font-weight: 800;
+      line-height: 0.9;
+      letter-spacing: -4px;
+      color: var(--ink);
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    .hero-name .accent { color: var(--coral); }
+
+    .hero-sub {
+      font-size: 18px;
+      font-weight: 500;
+      color: #555;
+      margin-top: 28px;
+      line-height: 1.7;
+      max-width: 480px;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 32px;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 700;
+      border: 2px solid var(--ink);
+      background: transparent;
+      transition: background 0.2s, color 0.2s;
+      cursor: default;
+    }
+
+    .chip:hover { background: var(--ink); color: var(--lime); }
+    .chip-lime { background: var(--lime); border-color: var(--lime); }
+    .chip-lime:hover { background: var(--ink); color: var(--lime); border-color: var(--ink); }
+
+    .hero-cta {
+      margin-top: 48px;
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+
+    .btn-main {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--ink);
+      color: var(--lime);
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 18px 36px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 4px 4px 0 var(--coral);
+      letter-spacing: 0.02em;
+    }
+
+    .btn-main:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--coral);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTION COMMON ── */
+    section { position: relative; z-index: 1; }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 100px 48px;
+    }
+
+    .section-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--coral);
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      color: var(--ink);
+      margin-bottom: 48px;
+    }
+
+    /* ── WORKS ── */
+    .works-section { background: var(--ink); }
+    .works-section .section-label { color: var(--lime); }
+    .works-section .section-title { color: var(--paper); }
+
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .work-card {
+      background: #1A1A1A;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid #2A2A2A;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+      display: block;
+    }
+
+    .work-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 48px rgba(0,0,0,0.4);
+    }
+
+    .work-thumb {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .thumb-freezer { background: linear-gradient(135deg, #1A1A2E, #0F3460); }
+    .thumb-cleaning { background: linear-gradient(135deg, #e8f5e9, #a5d6a7); }
+    .thumb-ai { background: linear-gradient(135deg, #1a0533, #6b21a8); }
+
+    .work-thumb-label {
+      position: absolute;
+      top: 16px; left: 16px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border-radius: 100px;
+    }
+
+    .work-body {
+      padding: 24px;
+    }
+
+    .work-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .work-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+
+    .tag-lime { background: rgba(200,241,53,0.15); color: var(--lime); }
+    .tag-sky  { background: rgba(91,224,250,0.15); color: var(--sky); }
+    .tag-coral{ background: rgba(255,107,107,0.15); color: var(--coral); }
+
+    .work-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+
+    .work-desc {
+      font-size: 13px;
+      color: #888;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .work-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--lime);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .work-link svg { transition: transform 0.2s; }
+    .work-card:hover .work-link svg { transform: translateX(4px); }
+
+    /* ── SKILLS ── */
+    .skills-section { background: var(--paper); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-card {
+      background: var(--card-bg);
+      border: 2px solid var(--ink);
+      border-radius: 16px;
+      padding: 32px 28px;
+      transition: transform 0.2s, background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 80px; height: 80px;
+      border-radius: 50% 0 16px 0;
+      transition: width 0.3s, height 0.3s;
+    }
+
+    .skill-card-lime::before { background: var(--lime); }
+    .skill-card-coral::before { background: var(--coral); }
+    .skill-card-sky::before { background: var(--sky); }
+
+    .skill-card:hover { transform: translate(-4px, -4px); }
+    .skill-card:hover::before { width: 120px; height: 120px; }
+
+    .skill-icon { font-size: 36px; margin-bottom: 16px; }
+
+    .skill-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+
+    .skill-desc { font-size: 13px; color: #666; line-height: 1.7; }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      background: var(--lime);
+      text-align: center;
+    }
+
+    .contact-section .section-title { color: var(--ink); }
+
+    .contact-desc {
+      font-size: 16px;
+      color: #333;
+      max-width: 480px;
+      margin: 0 auto 40px;
+      line-height: 1.8;
+    }
+
+    .btn-contact {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--ink);
+      color: var(--lime);
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 18px 40px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 4px 4px 0 var(--coral);
+    }
+
+    .btn-contact:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--coral);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: #555;
+      text-align: center;
+      padding: 32px 48px;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+    }
+
+    footer span { color: var(--lime); }
+
+    /* ── SCROLL ANIMATION ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      header { padding: 16px 24px; }
+      nav { display: none; }
+      .hero { padding: 100px 24px 60px; }
+      .section-inner { padding: 64px 24px; }
+      .hero-name { letter-spacing: -2px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a href="#" class="logo">Lazzlly<span>.</span></a>
+    <nav>
+      <a href="#works">Works</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="deco-circle deco-circle-1"></div>
+    <div class="deco-circle deco-circle-2"></div>
+    <div class="deco-circle deco-circle-3"></div>
+
+    <div class="hero-inner">
+      <div class="hero-tag">Available for freelance work</div>
+      <h1 class="hero-name">Lazz<br><span class="accent">lly</span></h1>
+      <p class="hero-sub">
+        AIとCursorを武器に、伝わるLPを高速制作。<br>
+        あなたのビジネスの「売れる見た目」を一緒に作ります。
+      </p>
+      <div class="hero-chips">
+        <div class="chip chip-lime">⚡ Cursor × AI</div>
+        <div class="chip">🎨 LP制作</div>
+        <div class="chip">📱 レスポンシブ</div>
+        <div class="chip">🚀 高速納品</div>
+      </div>
+      <div class="hero-cta">
+        <a href="#works" class="btn-main">
+          作品を見る
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKS -->
+  <section class="works-section" id="works">
+    <div class="section-inner">
+      <span class="section-label">Portfolio</span>
+      <h2 class="section-title">制作実績</h2>
+      <div class="works-grid">
+
+        <a href="./freezer-cooking/" class="work-card fade-up">
+          <div class="work-thumb thumb-freezer">
+            🥘
+            <div class="work-thumb-label">LP</div>
+          </div>
+          <div class="work-body">
+            <div class="work-tags">
+              <span class="work-tag tag-lime">HTML/CSS</span>
+              <span class="work-tag tag-sky">アニメーション</span>
+            </div>
+            <div class="work-title">冷凍ミールプレップ料理チャンネル</div>
+            <p class="work-desc">YouTubeチャンネルのLP。ダーク×オレンジの食欲をそそるデザインで、チャンネル登録を促す構成。</p>
+            <div class="work-link">
+              View Project
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+        <a href="./cleaning-shop/" class="work-card fade-up">
+          <div class="work-thumb thumb-cleaning">
+            🧹
+            <div class="work-thumb-label">LP</div>
+          </div>
+          <div class="work-body">
+            <div class="work-tags">
+              <span class="work-tag tag-lime">HTML/CSS</span>
+              <span class="work-tag tag-coral">ビジネス</span>
+            </div>
+            <div class="work-title">クリーニング店LP</div>
+            <p class="work-desc">地域密着型クリーニング店のランディングページ。清潔感と信頼感を伝えるデザイン。</p>
+            <div class="work-link">
+              View Project
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+        <a href="./ai-coding-course/" class="work-card fade-up">
+          <div class="work-thumb thumb-ai">
+            🤖
+            <div class="work-thumb-label">LP</div>
+          </div>
+          <div class="work-body">
+            <div class="work-tags">
+              <span class="work-tag tag-lime">HTML/CSS</span>
+              <span class="work-tag tag-sky">AI × Tech</span>
+            </div>
+            <div class="work-title">AIコーディングコースLP</div>
+            <p class="work-desc">AIを使ったプログラミング学習コースのLP。テック感あふれるダークデザインで受講を促進。</p>
+            <div class="work-link">
+              View Project
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills-section" id="skills">
+    <div class="section-inner">
+      <span class="section-label">Skills</span>
+      <h2 class="section-title">できること</h2>
+      <div class="skills-grid">
+        <div class="skill-card skill-card-lime fade-up">
+          <div class="skill-icon">⚡</div>
+          <div class="skill-name">Cursor × AI活用</div>
+          <p class="skill-desc">AIを最大限に活用した高速開発。通常の数倍のスピードで高品質なLPを制作します。</p>
+        </div>
+        <div class="skill-card skill-card-coral fade-up">
+          <div class="skill-icon">🎨</div>
+          <div class="skill-name">LP・サイト制作</div>
+          <p class="skill-desc">HTML/CSSでゼロから制作。お客様のブランドに合わせたオリジナルデザインを提供します。</p>
+        </div>
+        <div class="skill-card skill-card-sky fade-up">
+          <div class="skill-icon">📱</div>
+          <div class="skill-name">レスポンシブ対応</div>
+          <p class="skill-desc">スマホ・タブレット・PCすべてで美しく表示。どんなデバイスでも崩れないデザインを実現します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="section-inner">
+      <span class="section-label" style="color:#333;">Contact</span>
+      <h2 class="section-title">お仕事のご依頼</h2>
+      <p class="contact-desc">
+        LP制作・Webサイト制作のご依頼、お気軽にご連絡ください。<br>
+        まずはご相談だけでも大歓迎です！
+      </p>
+      <a href="mailto:your@email.com" class="btn-contact">
+        お問い合わせはこちら
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 <span>Lazzlly</span>. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 100);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
