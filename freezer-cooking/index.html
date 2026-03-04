@@ -1,0 +1,1731 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>冷凍ミールプレップ料理チャンネル | チンするだけで本格ごはん</title>
+  <meta name="description" content="食材を切って袋に入れて冷凍するだけ。食べたいときにレンジでチンするだけで、栄養満点・本格的な料理が完成！忙しい毎日をもっとラクに、もっと美味しく。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary: #FF6B35;
+      --primary-dark: #E85D2C;
+      --secondary: #2EC4B6;
+      --accent: #FFE66D;
+      --dark: #1A1A2E;
+      --dark-2: #16213E;
+      --text: #2D2D2D;
+      --text-light: #666;
+      --bg: #FFFBF7;
+      --white: #FFFFFF;
+      --gradient-hero: linear-gradient(135deg, #1A1A2E 0%, #16213E 50%, #0F3460 100%);
+      --gradient-warm: linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%);
+      --gradient-cool: linear-gradient(135deg, #2EC4B6 0%, #1AA098 100%);
+      --shadow: 0 20px 60px rgba(0,0,0,0.12);
+      --shadow-card: 0 8px 32px rgba(0,0,0,0.08);
+      --radius: 20px;
+      --radius-sm: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ========== HEADER ========== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(26, 26, 46, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--gradient-warm);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .logo-text {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+    }
+
+    .logo-sub {
+      font-size: 10px;
+      color: rgba(255,255,255,0.6);
+      font-weight: 400;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    nav a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--accent); }
+
+    .header-cta {
+      background: var(--gradient-warm);
+      color: white !important;
+      padding: 10px 24px;
+      border-radius: 100px;
+      font-weight: 700 !important;
+      font-size: 14px !important;
+      transition: transform 0.2s, box-shadow 0.2s !important;
+    }
+
+    .header-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255,107,53,0.4) !important;
+      color: white !important;
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      min-height: 100vh;
+      background: var(--gradient-hero);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 40px 80px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255,107,53,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -150px;
+      left: -150px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(46,196,182,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,230,109,0.15);
+      border: 1px solid rgba(255,230,109,0.3);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-badge span { font-size: 16px; }
+
+    .hero-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.3;
+      margin-bottom: 24px;
+    }
+
+    .hero-title .highlight {
+      color: var(--primary);
+      position: relative;
+    }
+
+    .hero-title .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--primary);
+      opacity: 0.4;
+      border-radius: 2px;
+    }
+
+    .hero-desc {
+      color: rgba(255,255,255,0.75);
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--gradient-warm);
+      color: white;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 700;
+      padding: 18px 40px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 8px 32px rgba(255,107,53,0.35);
+      width: fit-content;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(255,107,53,0.45);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+      padding-left: 4px;
+    }
+
+    .btn-secondary:hover { color: white; }
+
+    .btn-secondary svg {
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      padding: 8px;
+      flex-shrink: 0;
+    }
+
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-card-main {
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      padding: 32px;
+      position: relative;
+    }
+
+    .hero-video-thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #2a2a4a, #1a3a5c);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .hero-video-thumb::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,107,53,0.2), rgba(46,196,182,0.2));
+    }
+
+    .play-btn {
+      width: 70px;
+      height: 70px;
+      background: rgba(255,255,255,0.95);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .play-btn:hover { transform: scale(1.1); }
+
+    .play-btn::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-top: 14px solid transparent;
+      border-bottom: 14px solid transparent;
+      border-left: 22px solid var(--primary);
+      margin-left: 4px;
+    }
+
+    .hero-card-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 16px 12px;
+      background: rgba(255,255,255,0.05);
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .stat-num {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--white);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.55);
+      margin-top: 2px;
+    }
+
+    .floating-tag {
+      position: absolute;
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      padding: 10px 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .floating-tag-1 {
+      top: -20px;
+      right: -20px;
+      animation-delay: 0s;
+    }
+
+    .floating-tag-2 {
+      bottom: -20px;
+      left: -20px;
+      animation-delay: 1.5s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* ========== SECTION BASE ========== */
+    section {
+      padding: 100px 40px;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--primary);
+      background: rgba(255,107,53,0.1);
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(26px, 3.5vw, 42px);
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 16px;
+      color: var(--dark);
+    }
+
+    .section-desc {
+      font-size: 16px;
+      color: var(--text-light);
+      max-width: 600px;
+      line-height: 1.8;
+    }
+
+    .section-header {
+      margin-bottom: 60px;
+    }
+
+    /* ========== PROBLEM SECTION ========== */
+    .problem-section {
+      background: #FFF5F0;
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .problem-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow-card);
+      border-top: 4px solid #FFD5C8;
+      position: relative;
+    }
+
+    .problem-icon {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+
+    .problem-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--dark);
+    }
+
+    .problem-card p {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    .problem-card::after {
+      content: '😣';
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-size: 20px;
+      opacity: 0.3;
+    }
+
+    /* ========== SOLUTION SECTION ========== */
+    .solution-section {
+      background: var(--dark);
+      color: white;
+    }
+
+    .solution-section .section-title { color: white; }
+    .solution-section .section-label {
+      background: rgba(255,107,53,0.2);
+    }
+    .solution-section .section-desc { color: rgba(255,255,255,0.65); }
+
+    .solution-flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 60px;
+      position: relative;
+    }
+
+    .solution-flow::before {
+      content: '';
+      position: absolute;
+      top: 60px;
+      left: calc(12.5% + 30px);
+      right: calc(12.5% + 30px);
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      z-index: 0;
+    }
+
+    .flow-step {
+      text-align: center;
+      padding: 0 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .flow-icon-wrap {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 24px;
+      background: rgba(255,255,255,0.06);
+      border: 2px solid rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 44px;
+      position: relative;
+      transition: transform 0.3s;
+    }
+
+    .flow-icon-wrap:hover { transform: scale(1.1); }
+
+    .flow-step-num {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      width: 32px;
+      height: 32px;
+      background: var(--gradient-warm);
+      border-radius: 50%;
+      font-size: 14px;
+      font-weight: 900;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .flow-step h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: white;
+    }
+
+    .flow-step p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+    }
+
+    /* ========== BENEFITS ========== */
+    .benefits-section {
+      background: var(--bg);
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .benefit-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 40px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+    }
+
+    .benefit-icon-wrap {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .benefit-icon-wrap.orange { background: rgba(255,107,53,0.12); }
+    .benefit-icon-wrap.teal  { background: rgba(46,196,182,0.12); }
+    .benefit-icon-wrap.yellow { background: rgba(255,230,109,0.2); }
+    .benefit-icon-wrap.purple { background: rgba(150,120,255,0.12); }
+
+    .benefit-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+
+    .benefit-card p {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+
+    /* ========== RECIPES ========== */
+    .recipes-section {
+      background: linear-gradient(180deg, #F0FBF9 0%, #FFFBF7 100%);
+    }
+
+    .recipes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .recipe-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .recipe-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow);
+    }
+
+    .recipe-thumb {
+      width: 100%;
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+      position: relative;
+    }
+
+    .recipe-thumb.r1 { background: linear-gradient(135deg, #FFE5D4, #FFCBA4); }
+    .recipe-thumb.r2 { background: linear-gradient(135deg, #D4F5F0, #A4E8E0); }
+    .recipe-thumb.r3 { background: linear-gradient(135deg, #FFF5D4, #FFE8A4); }
+    .recipe-thumb.r4 { background: linear-gradient(135deg, #E8D4FF, #D4B4FF); }
+    .recipe-thumb.r5 { background: linear-gradient(135deg, #D4E8FF, #A4C8FF); }
+    .recipe-thumb.r6 { background: linear-gradient(135deg, #FFD4D4, #FFA4A4); }
+
+    .recipe-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--primary);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+
+    .recipe-body {
+      padding: 24px;
+    }
+
+    .recipe-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .recipe-time {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    .recipe-cal {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      color: var(--secondary);
+      font-weight: 600;
+    }
+
+    .recipe-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--dark);
+    }
+
+    .recipe-card p {
+      font-size: 13px;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    .recipe-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 16px;
+    }
+
+    .recipe-tag {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 100px;
+      background: #F5F5F5;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    /* ========== TESTIMONIALS ========== */
+    .testimonials-section {
+      background: var(--white);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .testimonial-card {
+      background: var(--bg);
+      border-radius: var(--radius);
+      padding: 32px;
+      position: relative;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      font-family: 'Noto Serif JP', serif;
+      font-size: 80px;
+      color: var(--primary);
+      opacity: 0.15;
+      position: absolute;
+      top: 8px;
+      left: 16px;
+      line-height: 1;
+    }
+
+    .testimonial-stars {
+      color: #FFB800;
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+
+    .testimonial-text {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text);
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .author-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .avatar-a { background: linear-gradient(135deg, #FFD5C8, #FFAA99); }
+    .avatar-b { background: linear-gradient(135deg, #C8E8FF, #99CCFF); }
+    .avatar-c { background: linear-gradient(135deg, #D5FFD5, #99EE99); }
+    .avatar-d { background: linear-gradient(135deg, #FFE5C8, #FFCC88); }
+    .avatar-e { background: linear-gradient(135deg, #E5C8FF, #CC99FF); }
+    .avatar-f { background: linear-gradient(135deg, #C8FFE5, #99FFCC); }
+
+    .author-info {
+      flex: 1;
+    }
+
+    .author-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .author-meta {
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    /* ========== CHANNEL ========== */
+    .channel-section {
+      background: var(--gradient-hero);
+      color: white;
+      text-align: center;
+    }
+
+    .channel-section .section-title { color: white; text-align: center; }
+    .channel-section .section-label { margin: 0 auto 16px; display: block; width: fit-content; }
+    .channel-section .section-desc { color: rgba(255,255,255,0.65); margin: 0 auto 48px; text-align: center; }
+
+    .channel-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 56px;
+    }
+
+    .channel-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 32px 24px;
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    .channel-card:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .channel-card-icon {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+
+    .channel-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: white;
+    }
+
+    .channel-card p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+    }
+
+    /* ========== CTA SECTION ========== */
+    .cta-section {
+      background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 50%, #FFB347 100%);
+      color: white;
+      text-align: center;
+      padding: 100px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+    }
+
+    .cta-section .section-label {
+      background: rgba(255,255,255,0.2);
+      color: white;
+    }
+
+    .cta-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: white;
+      line-height: 1.4;
+    }
+
+    .cta-desc {
+      font-size: 16px;
+      color: rgba(255,255,255,0.85);
+      max-width: 560px;
+      margin: 0 auto 48px;
+      line-height: 1.8;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-white {
+      background: white;
+      color: var(--primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 700;
+      padding: 18px 40px;
+      border-radius: 100px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    }
+
+    .btn-white:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.2);
+    }
+
+    .btn-outline-white {
+      background: transparent;
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 16px 36px;
+      border-radius: 100px;
+      border: 2px solid rgba(255,255,255,0.7);
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .btn-outline-white:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: white;
+    }
+
+    /* ========== FAQ ========== */
+    .faq-section {
+      background: #F8F9FC;
+    }
+
+    .faq-list {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq-item {
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+
+    .faq-q {
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--dark);
+      user-select: none;
+      gap: 16px;
+    }
+
+    .faq-q::after {
+      content: '+';
+      font-size: 24px;
+      color: var(--primary);
+      flex-shrink: 0;
+      font-weight: 300;
+      transition: transform 0.3s;
+    }
+
+    .faq-item.open .faq-q::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 300px;
+    }
+
+    .faq-a-inner {
+      padding: 0 28px 24px;
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.8;
+      border-top: 1px solid #F0F0F0;
+      padding-top: 16px;
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.6);
+      padding: 60px 40px 40px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand .logo { margin-bottom: 16px; }
+    .footer-brand p {
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .footer-col h4 {
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-col a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover { color: white; }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+    }
+
+    /* ========== SOCIAL BAR ========== */
+    .social-bar {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .social-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 16px;
+      transition: background 0.2s;
+    }
+
+    .social-btn:hover { background: rgba(255,255,255,0.15); }
+
+    /* ========== SCROLL ANIMATION ========== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 900px) {
+      header { padding: 14px 20px; }
+      nav { display: none; }
+
+      section { padding: 72px 24px; }
+      .hero { padding: 100px 24px 72px; }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .hero-visual { order: -1; }
+
+      .problem-grid,
+      .benefits-grid,
+      .recipes-grid,
+      .testimonials-grid,
+      .channel-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .solution-flow {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+      }
+
+      .solution-flow::before { display: none; }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-card-stats { grid-template-columns: repeat(3, 1fr); }
+      .cta-buttons { flex-direction: column; align-items: center; }
+      .btn-primary, .btn-white, .btn-outline-white { width: 100%; max-width: 320px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a href="#" class="logo">
+      <div class="logo-icon">🥘</div>
+      <div>
+        <div class="logo-text">フリーズ飯チャンネル</div>
+        <div class="logo-sub">冷凍×レンチンで本格ごはん</div>
+      </div>
+    </a>
+    <nav>
+      <a href="#how-it-works">作り方</a>
+      <a href="#recipes">レシピ</a>
+      <a href="#benefits">メリット</a>
+      <a href="#faq">よくある質問</a>
+      <a href="#subscribe" class="header-cta">今すぐ登録</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span>🎬</span> 話題の時短ミールプレップ動画チャンネル
+        </div>
+        <h1 class="hero-title">
+          袋に入れて<br />
+          凍らせるだけ。<br />
+          あとは<span class="highlight">チンするだけ</span>。
+        </h1>
+        <p class="hero-desc">
+          食材を切って調味料と一緒にビニール袋へ。冷凍庫に入れておけば、
+          食べたいときにレンジでチンするだけで栄養満点・本格的な一品が完成。
+          毎日の食事をもっとラクに、もっと美味しく。
+        </p>
+        <div class="hero-actions">
+          <a href="#subscribe" class="btn-primary">
+            🎬 無料動画を見る
+          </a>
+          <a href="#how-it-works" class="btn-secondary">
+            <svg viewBox="0 0 36 36" fill="none">
+              <circle cx="18" cy="18" r="18" fill="rgba(255,255,255,0.1)"/>
+              <path d="M15 12l8 6-8 6V12z" fill="white"/>
+            </svg>
+            作り方を詳しく見る
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="floating-tag floating-tag-1">
+          ⏱️ 調理時間わずか3分
+        </div>
+        <div class="hero-card-main">
+          <div class="hero-video-thumb">
+            <div class="play-btn"></div>
+          </div>
+          <div class="hero-card-stats">
+            <div class="stat-item">
+              <span class="stat-num">50+</span>
+              <span class="stat-label">動画本数</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">1万+</span>
+              <span class="stat-label">登録者数</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">4.9★</span>
+              <span class="stat-label">満足度</span>
+            </div>
+          </div>
+        </div>
+        <div class="floating-tag floating-tag-2">
+          🥗 栄養バランス◎
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="problem-section">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">こんなお悩みはありませんか？</span>
+        <h2 class="section-title">毎日の食事づくりが<br />こんなに大変…</h2>
+        <p class="section-desc">忙しい現代人が抱える「食」の悩み、そのまま放っておいていませんか？</p>
+      </div>
+      <div class="problem-grid">
+        <div class="problem-card fade-up">
+          <div class="problem-icon">😩</div>
+          <h3>仕事で疲れて<br />料理する気力がない</h3>
+          <p>帰宅後はもうクタクタ。コンビニ弁当や外食が続いて、栄養バランスも心配…</p>
+        </div>
+        <div class="problem-card fade-up">
+          <div class="problem-icon">🗑️</div>
+          <h3>食材を買っても<br />使い切れず無駄にする</h3>
+          <p>野菜を買ったのに気づけば冷蔵庫の奥で傷んでいた。食費がもったいない。</p>
+        </div>
+        <div class="problem-card fade-up">
+          <div class="problem-icon">🍟</div>
+          <h3>外食・テイクアウトで<br />栄養が偏りがち</h3>
+          <p>カロリーは高くても野菜不足。塩分や脂質が多くて体への影響が気になる。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTION (HOW IT WORKS) -->
+  <section class="solution-section" id="how-it-works">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">解決策</span>
+        <h2 class="section-title">たった4ステップで<br />理想の食生活が実現</h2>
+        <p class="section-desc">週末に少し準備するだけで、平日の食事が劇的に変わります。</p>
+      </div>
+      <div class="solution-flow">
+        <div class="flow-step fade-up">
+          <div class="flow-icon-wrap">
+            🛒
+            <div class="flow-step-num">1</div>
+          </div>
+          <h3>食材を購入</h3>
+          <p>週末に必要な食材をまとめ買い。レシピ動画を参考にリスト作成するだけ。</p>
+        </div>
+        <div class="flow-step fade-up">
+          <div class="flow-icon-wrap">
+            🔪
+            <div class="flow-step-num">2</div>
+          </div>
+          <h3>切って袋へ</h3>
+          <p>食材を適当な大きさにカットして調味料と一緒にビニール袋へ。ここまでで準備完了。</p>
+        </div>
+        <div class="flow-step fade-up">
+          <div class="flow-icon-wrap">
+            ❄️
+            <div class="flow-step-num">3</div>
+          </div>
+          <h3>冷凍庫へ入れる</h3>
+          <p>平らにして冷凍保存。3週間程度の保存が可能なので、まとめて作っておけばOK。</p>
+        </div>
+        <div class="flow-step fade-up">
+          <div class="flow-icon-wrap">
+            📱
+            <div class="flow-step-num">4</div>
+          </div>
+          <h3>レンチンで完成！</h3>
+          <p>食べたいときに冷凍庫から出してレンジへ。3〜5分で本格的な料理が完成します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="benefits-section" id="benefits">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">このチャンネルのメリット</span>
+        <h2 class="section-title">冷凍ミールプレップで<br />生活が変わる理由</h2>
+        <p class="section-desc">単なる時短テクニックではありません。食生活そのものがアップグレードされます。</p>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit-card fade-up">
+          <div class="benefit-icon-wrap orange">⏰</div>
+          <div>
+            <h3>平日の調理時間が<br />最大90%削減</h3>
+            <p>週末の2〜3時間の準備で、平日は電子レンジを使うだけ。毎日の調理ストレスがゼロになります。</p>
+          </div>
+        </div>
+        <div class="benefit-card fade-up">
+          <div class="benefit-icon-wrap teal">🥗</div>
+          <div>
+            <h3>栄養バランスが<br />自然と整う</h3>
+            <p>たんぱく質・野菜・炭水化物をバランスよく組み合わせたレシピで、栄養偏りの心配なし。</p>
+          </div>
+        </div>
+        <div class="benefit-card fade-up">
+          <div class="benefit-icon-wrap yellow">💰</div>
+          <div>
+            <h3>食費を月2〜3万円<br />節約できる</h3>
+            <p>外食・コンビニ依存から脱却。食材をまとめ買いすることでさらにコストダウンが実現します。</p>
+          </div>
+        </div>
+        <div class="benefit-card fade-up">
+          <div class="benefit-icon-wrap purple">🌱</div>
+          <div>
+            <h3>食品ロスが<br />ほぼゼロになる</h3>
+            <p>買った食材をすぐに加工して冷凍するので傷む心配がありません。無駄なく使い切れます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECIPES -->
+  <section class="recipes-section" id="recipes">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">人気レシピ</span>
+        <h2 class="section-title">チャンネルで人気の<br />レシピをご紹介</h2>
+        <p class="section-desc">定番の和食から洋食・アジア料理まで、幅広いジャンルのレシピ動画を公開中。</p>
+      </div>
+      <div class="recipes-grid">
+        <div class="recipe-card fade-up">
+          <div class="recipe-thumb r1">🍗<span class="recipe-badge">人気No.1</span></div>
+          <div class="recipe-body">
+            <div class="recipe-meta">
+              <span class="recipe-time">⏱️ レンチン4分</span>
+              <span class="recipe-cal">🔥 380kcal</span>
+            </div>
+            <h3>鶏むね肉の旨だれ蒸し鶏</h3>
+            <p>低カロリー高たんぱくの鶏むね肉をしっとり仕上げる人気レシピ。</p>
+            <div class="recipe-tags">
+              <span class="recipe-tag">高たんぱく</span>
+              <span class="recipe-tag">ダイエット向き</span>
+              <span class="recipe-tag">和風</span>
+            </div>
+          </div>
+        </div>
+        <div class="recipe-card fade-up">
+          <div class="recipe-thumb r2">🐟<span class="recipe-badge">週間1位</span></div>
+          <div class="recipe-body">
+            <div class="recipe-meta">
+              <span class="recipe-time">⏱️ レンチン5分</span>
+              <span class="recipe-cal">🔥 290kcal</span>
+            </div>
+            <h3>鮭と野菜のバター醤油蒸し</h3>
+            <p>旬の鮭と彩り野菜を袋に入れるだけ。栄養バランス抜群の一品。</p>
+            <div class="recipe-tags">
+              <span class="recipe-tag">オメガ3</span>
+              <span class="recipe-tag">野菜たっぷり</span>
+              <span class="recipe-tag">和洋折衷</span>
+            </div>
+          </div>
+        </div>
+        <div class="recipe-card fade-up">
+          <div class="recipe-thumb r3">🥩<span class="recipe-badge">NEW</span></div>
+          <div class="recipe-body">
+            <div class="recipe-meta">
+              <span class="recipe-time">⏱️ レンチン6分</span>
+              <span class="recipe-cal">🔥 450kcal</span>
+            </div>
+            <h3>豚バラ大根の中華風煮込み</h3>
+            <p>味がしっかり染み込んだ、冬に食べたいホッと系おかず。</p>
+            <div class="recipe-tags">
+              <span class="recipe-tag">ボリューム満点</span>
+              <span class="recipe-tag">中華風</span>
+              <span class="recipe-tag">作り置き</span>
+            </div>
+          </div>
+        </div>
+        <div class="recipe-card fade-up">
+          <div class="recipe-thumb r4">🍛</div>
+          <div class="recipe-body">
+            <div class="recipe-meta">
+              <span class="recipe-time">⏱️ レンチン5分</span>
+              <span class="recipe-cal">🔥 420kcal</span>
+            </div>
+            <h3>チキンのカレーマリネ蒸し</h3>
+            <p>スパイスが食欲をそそる、子どもから大人まで大人気のカレー味。</p>
+            <div class="recipe-tags">
+              <span class="recipe-tag">スパイシー</span>
+              <span class="recipe-tag">家族向け</span>
+              <span class="recipe-tag">エスニック</span>
+            </div>
+          </div>
+        </div>
+        <div class="recipe-card fade-up">
+          <div class="recipe-thumb r5">🥬</div>
+          <div class="recipe-body">
+            <div class="recipe-meta">
+              <span class="recipe-time">⏱️ レンチン3分</span>
+              <span class="recipe-cal">🔥 180kcal</span>
+            </div>
+            <h3>豆腐と野菜のヘルシー蒸し</h3>
+            <p>ダイエット中でも安心。豆腐と野菜だけでも満足感のある一品。</p>
+            <div class="recipe-tags">
+              <span class="recipe-tag">低カロリー</span>
+              <span class="recipe-tag">ヴィーガン対応</span>
+              <span class="recipe-tag">ダイエット</span>
+            </div>
+          </div>
+        </div>
+        <div class="recipe-card fade-up">
+          <div class="recipe-thumb r6">🍖</div>
+          <div class="recipe-body">
+            <div class="recipe-meta">
+              <span class="recipe-time">⏱️ レンチン5分</span>
+              <span class="recipe-cal">🔥 510kcal</span>
+            </div>
+            <h3>牛肉と玉ねぎの甘辛炒め煮</h3>
+            <p>ご飯が止まらない甘辛の肉おかず。子ども向けのお弁当にも最適。</p>
+            <div class="recipe-tags">
+              <span class="recipe-tag">お弁当向き</span>
+              <span class="recipe-tag">甘辛</span>
+              <span class="recipe-tag">ガッツリ系</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section">
+    <div class="section-inner">
+      <div class="section-header" style="text-align:center;">
+        <span class="section-label">視聴者の声</span>
+        <h2 class="section-title" style="text-align:center;">実際に試した方の<br />リアルな感想</h2>
+        <p class="section-desc" style="margin:0 auto;">年齢・ライフスタイルを問わず、多くの方の日常を変えています。</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">週末に2時間まとめて準備するようになって、平日の夕食準備がほぼゼロになりました！夫にも「外食より美味しい」と言われて嬉しいです。</p>
+          <div class="testimonial-author">
+            <div class="author-avatar avatar-a">👩</div>
+            <div class="author-info">
+              <div class="author-name">田中 さゆり さん</div>
+              <div class="author-meta">30代・主婦・2児の母</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">一人暮らしで料理が苦手だったんですが、このチャンネルのおかげで週5日自炊できるようになりました。体重も3ヶ月で5kg落ちました！</p>
+          <div class="testimonial-author">
+            <div class="author-avatar avatar-b">👨</div>
+            <div class="author-info">
+              <div class="author-name">山本 けいた さん</div>
+              <div class="author-meta">20代・会社員・一人暮らし</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">食費が月に約2万5千円削減されました！外食ばかりだったのが嘘みたいです。動画が分かりやすくて料理ゼロ知識でも全然大丈夫でした。</p>
+          <div class="testimonial-author">
+            <div class="author-avatar avatar-c">👩</div>
+            <div class="author-info">
+              <div class="author-name">伊藤 まさこ さん</div>
+              <div class="author-meta">40代・会社員・共働き</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-stars">★★★★☆</div>
+          <p class="testimonial-text">子どもたちがチャンネルのレシピが大好きで、毎週「今週は何作るの？」と聞いてきます。食卓が楽しくなりました。</p>
+          <div class="testimonial-author">
+            <div class="author-avatar avatar-d">👩</div>
+            <div class="author-info">
+              <div class="author-name">小林 みほ さん</div>
+              <div class="author-meta">30代・パート・3児の母</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">夜遅く帰ってきてもレンチンするだけで温かいご飯が食べられる。仕事のストレスが食事面では完全になくなりました。</p>
+          <div class="testimonial-author">
+            <div class="author-avatar avatar-e">👨</div>
+            <div class="author-info">
+              <div class="author-name">鈴木 たかし さん</div>
+              <div class="author-meta">40代・管理職・単身赴任中</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">管理栄養士として見ても、このチャンネルの栄養バランスの考え方は非常に優れています。患者さんにも積極的にお勧めしています。</p>
+          <div class="testimonial-author">
+            <div class="author-avatar avatar-f">👩</div>
+            <div class="author-info">
+              <div class="author-name">中村 りこ さん</div>
+              <div class="author-meta">管理栄養士・医療機関勤務</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHANNEL FEATURES -->
+  <section class="channel-section" id="subscribe">
+    <div class="section-inner">
+      <span class="section-label">チャンネルの特長</span>
+      <h2 class="section-title">フリーズ飯チャンネルが<br />選ばれる理由</h2>
+      <p class="section-desc">初心者からこだわり派まで、すべての方に価値のあるコンテンツをお届けしています。</p>
+      <div class="channel-cards">
+        <div class="channel-card fade-up">
+          <div class="channel-card-icon">📹</div>
+          <h3>丁寧でわかりやすい動画</h3>
+          <p>料理初心者でも迷わないよう、すべての工程をわかりやすく解説。テロップ・字幕も充実。</p>
+        </div>
+        <div class="channel-card fade-up">
+          <div class="channel-card-icon">🧪</div>
+          <h3>栄養計算済みレシピ</h3>
+          <p>すべてのレシピにカロリー・栄養素の情報を掲載。ダイエットや健康管理にも安心して使えます。</p>
+        </div>
+        <div class="channel-card fade-up">
+          <div class="channel-card-icon">💬</div>
+          <h3>コミュニティで学び合う</h3>
+          <p>視聴者同士が交流できるコミュニティグループ。アレンジレシピの共有や質問への回答も。</p>
+        </div>
+      </div>
+      <div class="cta-buttons">
+        <a href="#" class="btn-primary" style="background: var(--gradient-warm); box-shadow: 0 8px 32px rgba(255,107,53,0.4);">
+          🎬 チャンネルを登録する（無料）
+        </a>
+        <a href="#recipes" class="btn-outline-white">
+          📋 レシピ一覧を見る
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section" id="faq">
+    <div class="section-inner">
+      <div class="section-header" style="text-align:center;">
+        <span class="section-label">よくある質問</span>
+        <h2 class="section-title" style="text-align:center;">気になる疑問に<br />お答えします</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q">冷凍した料理はどのくらい保存できますか？</div>
+          <div class="faq-a">
+            <div class="faq-a-inner">一般的に2〜3週間程度の冷凍保存が可能です。食材の種類によって異なりますが、動画内では各レシピの推奨保存期間を明確にお伝えしています。冷凍焼けを防ぐためのコツも合わせて紹介しているのでご安心ください。</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">電子レンジだけで本当に美味しくできますか？</div>
+          <div class="faq-a">
+            <div class="faq-a-inner">はい、できます！コツは「蒸し調理」の原理を利用すること。袋ごと加熱することで食材の水分が閉じ込められ、しっとりジューシーに仕上がります。電子レンジのワット数や加熱時間も細かく説明しているので、機種による差も対応しやすいです。</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">料理が苦手でも大丈夫ですか？</div>
+          <div class="faq-a">
+            <div class="faq-a-inner">大丈夫です！包丁で食材を切って袋に入れるだけなので、料理初心者の方でも無理なく始められます。動画ではカットの仕方から丁寧に説明しています。実際に「料理ゼロ経験だった」という方からも多くの感謝の声をいただいています。</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">どんな保存袋を使えばいいですか？</div>
+          <div class="faq-a">
+            <div class="faq-a-inner">市販のジッパー付き冷凍保存袋（フリーザーバッグ）を使用します。電子レンジで使用する際は耐熱性のある袋を選ぶか、袋から取り出して耐熱容器に移して加熱することをお勧めします。詳しい袋の選び方や商品のおすすめは動画内でご紹介しています。</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">子どもや高齢者でも食べられるレシピはありますか？</div>
+          <div class="faq-a">
+            <div class="faq-a-inner">はい、チャンネルでは「ファミリー向け」「シニア向け」などのカテゴリを設けています。薄味・柔らか食感・アレルギー対応など様々なバリエーションをご用意しています。お子様が喜ぶ甘辛味や、お年寄りにやさしい消化に良いレシピも充実しています。</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">動画の視聴は無料ですか？</div>
+          <div class="faq-a">
+            <div class="faq-a-inner">チャンネルの動画はすべて無料でご視聴いただけます。チャンネル登録（無料）していただくと新着動画のお知らせが届き、見逃しがなくなります。一部の特別コンテンツ（詳細な栄養計算表・週間献立プランなど）は有料でご提供しています。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cta-section">
+    <div class="section-inner" style="position:relative;z-index:2;">
+      <span class="section-label">今すぐ始めよう</span>
+      <h2 class="cta-title">
+        今日から、食事を<br />「こなすもの」から<br />「楽しむもの」に変えよう
+      </h2>
+      <p class="cta-desc">
+        チャンネル登録は完全無料。50本以上の動画が今すぐ見られます。
+        まずは気軽に一本、見てみてください。
+      </p>
+      <div class="cta-buttons">
+        <a href="#" class="btn-white">
+          🎬 無料でチャンネル登録
+        </a>
+        <a href="#recipes" class="btn-outline-white">
+          📋 人気レシピを見る
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <div class="logo-icon">🥘</div>
+            <div>
+              <div class="logo-text">フリーズ飯チャンネル</div>
+              <div class="logo-sub">冷凍×レンチンで本格ごはん</div>
+            </div>
+          </a>
+          <p style="margin-top:16px;">食材を切って袋に入れて冷凍するだけ。あとはチンするだけで本格料理が完成する、新しい食スタイルをお届けするチャンネルです。</p>
+          <div class="social-bar">
+            <a href="#" class="social-btn" title="YouTube">▶️</a>
+            <a href="#" class="social-btn" title="Instagram">📷</a>
+            <a href="#" class="social-btn" title="TikTok">🎵</a>
+            <a href="#" class="social-btn" title="X">✕</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>コンテンツ</h4>
+          <ul>
+            <li><a href="#how-it-works">基本の作り方</a></li>
+            <li><a href="#recipes">レシピ一覧</a></li>
+            <li><a href="#benefits">冷凍保存のコツ</a></li>
+            <li><a href="#">週間献立プラン</a></li>
+            <li><a href="#">栄養計算ガイド</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>サポート</h4>
+          <ul>
+            <li><a href="#faq">よくある質問</a></li>
+            <li><a href="#">お問い合わせ</a></li>
+            <li><a href="#">プライバシーポリシー</a></li>
+            <li><a href="#">利用規約</a></li>
+            <li><a href="#">運営者情報</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 フリーズ飯チャンネル. All rights reserved.</span>
+        <span>冷凍×レンチンで、毎日の食卓をもっと豊かに ❄️🍽️</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // FAQ accordion
+    document.querySelectorAll('.faq-q').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    // Scroll animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Smooth header background on scroll
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        header.style.background = 'rgba(26, 26, 46, 0.98)';
+      } else {
+        header.style.background = 'rgba(26, 26, 46, 0.92)';
+      }
+    });
+  </script>
+</body>
+</html>
