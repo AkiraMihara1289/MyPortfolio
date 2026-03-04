@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paws & Plates — ペットと食事を楽しめるレストラン</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Zen+Kaku+Gothic+New:wght@300;400;500&family=Caveat:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- 浮遊する肉球デコレーション -->
+  <div class="floating-paws" aria-hidden="true">
+    <span class="paw paw-1">🐾</span>
+    <span class="paw paw-2">🐾</span>
+    <span class="paw paw-3">🐾</span>
+    <span class="paw paw-4">🐾</span>
+    <span class="paw paw-5">🐾</span>
+  </div>
+
+  <!-- ナビゲーション -->
+  <header class="header">
+    <div class="header__inner">
+      <a href="#" class="header__logo">
+        <span class="logo-icon">🐾</span>
+        <span class="logo-text">Paws <em>&amp;</em> Plates</span>
+      </a>
+      <nav class="header__nav">
+        <a href="#about">About</a>
+        <a href="#menu">Menu</a>
+        <a href="#animals">Friends</a>
+        <a href="#access">Access</a>
+        <a href="#reserve" class="header__btn">予約する</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="メニュー">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- モバイルメニュー -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#about">About</a>
+    <a href="#menu">Menu</a>
+    <a href="#animals">Friends</a>
+    <a href="#access">Access</a>
+    <a href="#reserve">予約する</a>
+  </div>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="top">
+    <div class="hero__bg-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+
+    <div class="hero__inner">
+      <div class="hero__text">
+        <p class="hero__tag">Pet-Friendly Restaurant</p>
+        <h1 class="hero__title">
+          ねこも、いぬも、<br />
+          <em>みんなで</em><br />
+          ごはんの時間。
+        </h1>
+        <p class="hero__desc">
+          店内には看板猫のミルクとモカ、看板犬のムースが自由気ままにうろつく、<br class="pc-only"/>
+          ほっこり空間のレストランです。おいしい料理と動物たちに癒されに来てください。
+        </p>
+        <div class="hero__cta">
+          <a href="#menu" class="btn btn--primary">メニューを見る</a>
+          <a href="#animals" class="btn btn--ghost">店内の子たちに会う</a>
+        </div>
+        <div class="hero__badges">
+          <span class="badge">🐱 猫と触れ合えます</span>
+          <span class="badge">🐶 犬もいます</span>
+          <span class="badge">🌿 ペット同伴OK</span>
+        </div>
+      </div>
+      <div class="hero__illustration">
+        <!-- メインイラスト：テーブルに座る猫と犬 -->
+        <svg class="hero-svg" viewBox="0 0 520 480" xmlns="http://www.w3.org/2000/svg">
+          <!-- 背景の丸 -->
+          <circle cx="260" cy="240" r="210" fill="#FFF3E8" opacity="0.7"/>
+          
+          <!-- テーブル -->
+          <ellipse cx="260" cy="370" rx="160" ry="22" fill="#D4A96A"/>
+          <rect x="100" y="355" width="320" height="18" rx="9" fill="#C49050"/>
+          <rect x="140" y="373" width="16" height="60" rx="8" fill="#C49050"/>
+          <rect x="364" y="373" width="16" height="60" rx="8" fill="#C49050"/>
+          
+          <!-- テーブル上の食器 -->
+          <ellipse cx="200" cy="350" rx="28" ry="8" fill="#fff" stroke="#E8D0B0" stroke-width="1.5"/>
+          <ellipse cx="200" cy="348" rx="22" ry="6" fill="#FFF8F0"/>
+          <circle cx="200" cy="345" r="10" fill="#F0C080"/>
+          <ellipse cx="320" cy="350" rx="28" ry="8" fill="#fff" stroke="#E8D0B0" stroke-width="1.5"/>
+          <ellipse cx="320" cy="348" rx="22" ry="6" fill="#FFF8F0"/>
+          <!-- コーヒーカップ -->
+          <rect x="244" y="330" width="32" height="22" rx="4" fill="#fff" stroke="#E8C88A" stroke-width="1.5"/>
+          <path d="M276 338 Q288 338 288 344 Q288 350 276 350" fill="none" stroke="#E8C88A" stroke-width="1.5"/>
+          <ellipse cx="260" cy="330" rx="16" ry="4" fill="#E8C88A"/>
+          <!-- コーヒーの中身 -->
+          <ellipse cx="260" cy="331" rx="13" ry="3" fill="#8B5E3C"/>
+          
+          <!-- 猫1（左）：座っている -->
+          <g transform="translate(115, 195)">
+            <!-- 体 -->
+            <ellipse cx="50" cy="105" rx="38" ry="45" fill="#F5D0A9"/>
+            <!-- しっぽ -->
+            <path d="M85 130 Q120 120 115 90 Q110 65 95 70" fill="none" stroke="#F5D0A9" stroke-width="10" stroke-linecap="round"/>
+            <!-- 頭 -->
+            <circle cx="50" cy="60" r="38" fill="#F5D0A9"/>
+            <!-- 耳 -->
+            <polygon points="18,32 5,5 35,22" fill="#F5D0A9"/>
+            <polygon points="82,32 95,5 65,22" fill="#F5D0A9"/>
+            <polygon points="20,30 10,10 33,24" fill="#FFB6C1"/>
+            <polygon points="80,30 90,10 67,24" fill="#FFB6C1"/>
+            <!-- 顔 -->
+            <circle cx="38" cy="52" r="8" fill="#fff"/>
+            <circle cx="62" cy="52" r="8" fill="#fff"/>
+            <circle cx="40" cy="54" r="5" fill="#5C3D2E"/>
+            <circle cx="64" cy="54" r="5" fill="#5C3D2E"/>
+            <circle cx="41" cy="53" r="2" fill="#fff"/>
+            <circle cx="65" cy="53" r="2" fill="#fff"/>
+            <!-- 鼻 -->
+            <ellipse cx="50" cy="65" rx="4" ry="3" fill="#FFB6C1"/>
+            <!-- ひげ -->
+            <line x1="54" y1="65" x2="75" y2="60" stroke="#ccc" stroke-width="1"/>
+            <line x1="54" y1="67" x2="75" y2="68" stroke="#ccc" stroke-width="1"/>
+            <line x1="46" y1="65" x2="25" y2="60" stroke="#ccc" stroke-width="1"/>
+            <line x1="46" y1="67" x2="25" y2="68" stroke="#ccc" stroke-width="1"/>
+            <!-- 口 -->
+            <path d="M46 70 Q50 75 54 70" fill="none" stroke="#E8A0A0" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- 手（前足） -->
+            <ellipse cx="30" cy="145" rx="14" ry="8" fill="#F5D0A9"/>
+            <ellipse cx="70" cy="145" rx="14" ry="8" fill="#F5D0A9"/>
+            <!-- 縞模様 -->
+            <path d="M25 85 Q50 80 75 85" fill="none" stroke="#E8B890" stroke-width="2" opacity="0.5"/>
+            <path d="M22 95 Q50 90 78 95" fill="none" stroke="#E8B890" stroke-width="2" opacity="0.5"/>
+          </g>
+          
+          <!-- 犬（右）：座っている ゴールデンレトリバー風 -->
+          <g transform="translate(295, 185)">
+            <!-- しっぽ -->
+            <path d="M80 130 Q115 110 120 80 Q125 55 105 50" fill="none" stroke="#D4A96A" stroke-width="12" stroke-linecap="round"/>
+            <!-- 体 -->
+            <ellipse cx="55" cy="105" rx="45" ry="50" fill="#E8C070"/>
+            <!-- 頭 -->
+            <circle cx="55" cy="58" r="42" fill="#E8C070"/>
+            <!-- 耳 -->
+            <ellipse cx="18" cy="68" rx="18" ry="28" fill="#D4A050" transform="rotate(-20, 18, 68)"/>
+            <ellipse cx="92" cy="68" rx="18" ry="28" fill="#D4A050" transform="rotate(20, 92, 68)"/>
+            <!-- マズル -->
+            <ellipse cx="55" cy="72" rx="22" ry="18" fill="#F0D090"/>
+            <!-- 鼻 -->
+            <ellipse cx="55" cy="62" rx="9" ry="7" fill="#5C3D2E"/>
+            <ellipse cx="53" cy="61" rx="3" ry="2" fill="#fff" opacity="0.4"/>
+            <!-- 目 -->
+            <circle cx="38" cy="48" r="9" fill="#fff"/>
+            <circle cx="72" cy="48" r="9" fill="#fff"/>
+            <circle cx="40" cy="50" r="6" fill="#5C3D2E"/>
+            <circle cx="74" cy="50" r="6" fill="#5C3D2E"/>
+            <circle cx="41" cy="49" r="2.5" fill="#fff"/>
+            <circle cx="75" cy="49" r="2.5" fill="#fff"/>
+            <!-- 口 -->
+            <path d="M42 78 Q55 88 68 78" fill="#fff" stroke="#E8A090" stroke-width="1"/>
+            <ellipse cx="55" cy="82" rx="10" ry="8" fill="#FF9090" opacity="0.8"/>
+            <!-- 前足 -->
+            <ellipse cx="30" cy="152" rx="18" ry="10" fill="#E8C070"/>
+            <ellipse cx="80" cy="152" rx="18" ry="10" fill="#E8C070"/>
+            <!-- 肉球 -->
+            <circle cx="30" cy="156" r="4" fill="#FFB6A0" opacity="0.7"/>
+            <circle cx="80" cy="156" r="4" fill="#FFB6A0" opacity="0.7"/>
+          </g>
+
+          <!-- 猫2（小さい、テーブルの上に乗っている） -->
+          <g transform="translate(220, 270)">
+            <ellipse cx="40" cy="55" rx="25" ry="28" fill="#8B7355"/>
+            <path d="M62 65 Q85 55 82 35" fill="none" stroke="#8B7355" stroke-width="7" stroke-linecap="round"/>
+            <circle cx="40" cy="30" r="25" fill="#8B7355"/>
+            <polygon points="22,14 12,-5 32,8" fill="#8B7355"/>
+            <polygon points="58,14 68,-5 48,8" fill="#8B7355"/>
+            <polygon points="23,13 15,-2 31,9" fill="#FFB6C1"/>
+            <polygon points="57,13 65,-2 49,9" fill="#FFB6C1"/>
+            <circle cx="30" cy="24" r="6" fill="#fff"/>
+            <circle cx="50" cy="24" r="6" fill="#fff"/>
+            <circle cx="31" cy="26" r="4" fill="#2C1A0E"/>
+            <circle cx="51" cy="26" r="4" fill="#2C1A0E"/>
+            <circle cx="32" cy="25" r="1.5" fill="#fff"/>
+            <circle cx="52" cy="25" r="1.5" fill="#fff"/>
+            <ellipse cx="40" cy="35" rx="3" ry="2" fill="#FFB6C1"/>
+            <path d="M37 38 Q40 42 43 38" fill="none" stroke="#E8A0A0" stroke-width="1" stroke-linecap="round"/>
+            <line x1="43" y1="35" x2="58" y2="31" stroke="#ccc" stroke-width="0.8"/>
+            <line x1="43" y1="37" x2="58" y2="38" stroke="#ccc" stroke-width="0.8"/>
+            <line x1="37" y1="35" x2="22" y2="31" stroke="#ccc" stroke-width="0.8"/>
+            <line x1="37" y1="37" x2="22" y2="38" stroke="#ccc" stroke-width="0.8"/>
+          </g>
+
+          <!-- 肉球の足跡装飾 -->
+          <g opacity="0.2">
+            <circle cx="60" cy="180" r="5" fill="#C9845A"/>
+            <circle cx="54" cy="172" r="3" fill="#C9845A"/>
+            <circle cx="62" cy="170" r="3" fill="#C9845A"/>
+            <circle cx="70" cy="173" r="3" fill="#C9845A"/>
+          </g>
+          <g opacity="0.2">
+            <circle cx="440" cy="280" r="5" fill="#C9845A"/>
+            <circle cx="434" cy="272" r="3" fill="#C9845A"/>
+            <circle cx="442" cy="270" r="3" fill="#C9845A"/>
+            <circle cx="450" cy="273" r="3" fill="#C9845A"/>
+          </g>
+
+          <!-- 吹き出し -->
+          <g transform="translate(155, 140)">
+            <rect x="0" y="0" width="80" height="32" rx="16" fill="#fff" filter="url(#shadow)"/>
+            <polygon points="15,32 5,44 28,32" fill="#fff"/>
+            <text x="12" y="21" font-family="sans-serif" font-size="16">😸 ニャー</text>
+          </g>
+          <g transform="translate(310, 125)">
+            <rect x="0" y="0" width="90" height="32" rx="16" fill="#fff"/>
+            <polygon points="75,32 85,44 62,32" fill="#fff"/>
+            <text x="10" y="21" font-family="sans-serif" font-size="16">🐶 ワン！</text>
+          </g>
+
+          <defs>
+            <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#00000015"/>
+            </filter>
+          </defs>
+        </svg>
+      </div>
+    </div>
+
+    <!-- 波形の区切り -->
+    <div class="hero__wave">
+      <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#fff"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section class="about" id="about">
+    <div class="about__inner">
+      <div class="about__cards">
+        <div class="about-card">
+          <div class="about-card__icon">🐱</div>
+          <h3>看板猫 2匹</h3>
+          <p>ミルク（白猫・5歳）とモカ（茶トラ・3歳）が店内を自由に歩き回っています。</p>
+        </div>
+        <div class="about-card">
+          <div class="about-card__icon">🐶</div>
+          <h3>看板犬 1匹</h3>
+          <p>ムース（ゴールデンレトリバー・4歳）が人懐っこく皆さんを出迎えます。</p>
+        </div>
+        <div class="about-card">
+          <div class="about-card__icon">🍽️</div>
+          <h3>本格料理</h3>
+          <p>動物好きのシェフが作る、素材にこだわった体に優しいメニューをご提供します。</p>
+        </div>
+        <div class="about-card">
+          <div class="about-card__icon">🌿</div>
+          <h3>ペット同伴OK</h3>
+          <p>テラス席はペット同伴で利用できます。大切なパートナーと一緒にどうぞ。</p>
+        </div>
+      </div>
+      <div class="about__text">
+        <p class="section-label">Our Story</p>
+        <h2 class="section-title">「美味しい」と「かわいい」が<br/>ひとつになる場所。</h2>
+        <p class="about__desc">
+          Paws & Plates は、大の動物好きだったオーナーが「食事の時間をもっと豊かにしたい」という想いで2020年に開いたレストランです。
+        </p>
+        <p class="about__desc">
+          ミルクとモカ、ムースの3匹が店内を自由に行き来し、お客様のそばで昼寝をしたり、足元にすり寄ったりしながら、食事の場に温かい雰囲気を作り出しています。もちろん料理の品質にも妥協なし。地元農家から仕入れた旬の食材を使ったメニューをご用意しています。
+        </p>
+        <a href="#animals" class="btn btn--primary">子たちを紹介する</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MENU ===================== -->
+  <section class="menu" id="menu">
+    <div class="menu__wave-top">
+      <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,15 1440,30 L1440,0 L0,0 Z" fill="#fff"/>
+      </svg>
+    </div>
+
+    <div class="menu__inner">
+      <div class="menu__header">
+        <p class="section-label">Menu</p>
+        <h2 class="section-title">季節の手作りメニュー</h2>
+        <p class="menu__sub">地元の農家さんから届く新鮮な食材で、毎日丁寧に仕込んでいます。</p>
+      </div>
+
+      <div class="menu__tabs">
+        <button class="menu__tab active" data-tab="food">🍴 フード</button>
+        <button class="menu__tab" data-tab="drink">☕ ドリンク</button>
+        <button class="menu__tab" data-tab="sweets">🍰 スイーツ</button>
+      </div>
+
+      <!-- フード -->
+      <div class="menu__content active" id="tab-food">
+        <div class="menu__grid">
+          <div class="menu-card">
+            <div class="menu-card__img">
+              <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="320" height="200" fill="#FFF8F0"/>
+                <!-- プレート -->
+                <ellipse cx="160" cy="130" rx="110" ry="55" fill="#fff" stroke="#F0D8B8" stroke-width="2"/>
+                <ellipse cx="160" cy="128" rx="90" ry="44" fill="#FFFAF5"/>
+                <!-- パスタ -->
+                <path d="M100 120 Q130 100 160 115 Q190 130 220 110" stroke="#F0C070" stroke-width="4" fill="none" stroke-linecap="round"/>
+                <path d="M95 130 Q128 108 158 122 Q188 136 225 118" stroke="#E8B060" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <path d="M100 140 Q135 118 165 132 Q195 146 222 128" stroke="#F0C070" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <!-- トマト -->
+                <circle cx="145" cy="118" r="12" fill="#FF7060"/>
+                <circle cx="175" cy="125" r="10" fill="#FF6050"/>
+                <!-- バジル -->
+                <ellipse cx="160" cy="108" rx="8" ry="5" fill="#7DC070" transform="rotate(-20, 160, 108)"/>
+                <ellipse cx="150" cy="112" rx="7" ry="4" fill="#6BB060" transform="rotate(15, 150, 112)"/>
+                <!-- 猫の肉球トッピング飾り -->
+                <circle cx="195" cy="112" r="5" fill="#FFB6A0" opacity="0.6"/>
+                <circle cx="192" cy="107" r="2.5" fill="#FFB6A0" opacity="0.6"/>
+                <circle cx="197" cy="106" r="2.5" fill="#FFB6A0" opacity="0.6"/>
+                <circle cx="202" cy="108" r="2.5" fill="#FFB6A0" opacity="0.6"/>
+                <text x="160" y="175" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#C9A070">Pasta al Pomodoro</text>
+              </svg>
+            </div>
+            <div class="menu-card__body">
+              <span class="menu-card__tag">看板メニュー</span>
+              <h3>🐾 肉球パスタ</h3>
+              <p>フレッシュトマトとバジルの優しいソース。トッピングの生ハムが決め手のお店一番人気。</p>
+              <div class="menu-card__price-row">
+                <span class="menu-card__price">¥1,480</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card">
+            <div class="menu-card__img">
+              <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="320" height="200" fill="#FFF8F0"/>
+                <!-- お皿 -->
+                <ellipse cx="160" cy="130" rx="110" ry="55" fill="#fff" stroke="#F0D8B8" stroke-width="2"/>
+                <ellipse cx="160" cy="128" rx="90" ry="44" fill="#FFFAF5"/>
+                <!-- バーガー -->
+                <ellipse cx="160" cy="105" rx="55" ry="22" fill="#C8840A"/>
+                <ellipse cx="160" cy="112" rx="52" ry="12" fill="#F0C060"/><!-- チーズ -->
+                <rect x="108" y="112" width="104" height="18" fill="#D4763A"/><!-- パティ -->
+                <rect x="110" y="122" width="100" height="8" rx="2" fill="#7DC070"/><!-- レタス -->
+                <rect x="112" y="126" width="96" height="10" rx="2" fill="#FF8060"/><!-- トマト -->
+                <ellipse cx="160" cy="132" rx="54" ry="10" fill="#E8A850"/><!-- 下バンズ -->
+                <circle cx="150" cy="98" r="4" fill="#F0D890"/><!-- ゴマ -->
+                <circle cx="165" cy="95" r="3" fill="#F0D890"/>
+                <circle cx="173" cy="99" r="3.5" fill="#F0D890"/>
+                <text x="160" y="175" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#C9A070">Wagyu Smash Burger</text>
+              </svg>
+            </div>
+            <div class="menu-card__body">
+              <h3>🐶 わんこバーガー</h3>
+              <p>和牛100%スマッシュバーガー。厚めのチーズと特製バーベキューソースでがっつり系。</p>
+              <div class="menu-card__price-row">
+                <span class="menu-card__price">¥1,680</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card">
+            <div class="menu-card__img">
+              <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="320" height="200" fill="#FFF8F0"/>
+                <ellipse cx="160" cy="130" rx="110" ry="55" fill="#fff" stroke="#F0D8B8" stroke-width="2"/>
+                <ellipse cx="160" cy="128" rx="90" ry="44" fill="#FFFAF5"/>
+                <!-- サラダボウル -->
+                <ellipse cx="160" cy="135" rx="75" ry="30" fill="#A0D090"/>
+                <ellipse cx="160" cy="128" rx="72" ry="25" fill="#B0E0A0"/>
+                <!-- 野菜 -->
+                <circle cx="138" cy="122" r="12" fill="#FF8060"/>
+                <circle cx="160" cy="118" r="10" fill="#FFE060"/>
+                <circle cx="180" cy="123" r="11" fill="#FF8060"/>
+                <ellipse cx="145" cy="130" rx="14" ry="8" fill="#7DC070" transform="rotate(-15)"/>
+                <ellipse cx="175" cy="128" rx="12" ry="7" fill="#6BC060" transform="rotate(10)"/>
+                <circle cx="155" cy="128" r="6" fill="#FFF080"/>
+                <!-- アボカド -->
+                <ellipse cx="165" cy="132" rx="15" ry="10" fill="#5A9040"/>
+                <ellipse cx="165" cy="132" rx="9" ry="6" fill="#C8A860"/>
+                <text x="160" y="175" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#C9A070">Fresh Bowl Salad</text>
+              </svg>
+            </div>
+            <div class="menu-card__body">
+              <span class="menu-card__tag new">NEW</span>
+              <h3>🌿 にゃんこボウル</h3>
+              <p>地元農家の無農薬野菜をたっぷり使ったグレインボウル。グルテンフリー対応可。</p>
+              <div class="menu-card__price-row">
+                <span class="menu-card__price">¥1,280</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ドリンク -->
+      <div class="menu__content" id="tab-drink">
+        <div class="menu__grid">
+          <div class="menu-card">
+            <div class="menu-card__img">
+              <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="320" height="200" fill="#FFF8F0"/>
+                <!-- カップ -->
+                <path d="M120 80 L135 165 L185 165 L200 80 Z" fill="#fff" stroke="#F0D8B8" stroke-width="2"/>
+                <path d="M120 80 L200 80" stroke="#F0D8B8" stroke-width="2"/>
+                <path d="M200 110 Q225 110 225 130 Q225 150 200 150" fill="none" stroke="#F0D8B8" stroke-width="3"/>
+                <!-- ラテアート -->
+                <ellipse cx="160" cy="92" rx="32" ry="10" fill="#D4A870"/>
+                <path d="M142 90 Q160 82 178 90" stroke="#F0C890" stroke-width="2" fill="none"/>
+                <!-- 猫ラテアート -->
+                <circle cx="160" cy="95" r="15" fill="#C8A060" opacity="0.6"/>
+                <circle cx="152" cy="91" r="5" fill="#C8A060" opacity="0.6"/>
+                <circle cx="168" cy="91" r="5" fill="#C8A060" opacity="0.6"/>
+                <!-- 耳 -->
+                <polygon points="148,87 144,80 153,85" fill="#C8A060" opacity="0.6"/>
+                <polygon points="172,87 176,80 167,85" fill="#C8A060" opacity="0.6"/>
+                <!-- ソーサー -->
+                <ellipse cx="160" cy="165" rx="50" ry="10" fill="#fff" stroke="#F0D8B8" stroke-width="1.5"/>
+                <text x="160" y="188" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#C9A070">Cat Latte Art</text>
+              </svg>
+            </div>
+            <div class="menu-card__body">
+              <span class="menu-card__tag">人気No.1</span>
+              <h3>🐱 ねこラテ</h3>
+              <p>バリスタが描く猫のラテアート。豆乳・オーツミルクも選べます。</p>
+              <div class="menu-card__price-row">
+                <span class="menu-card__price">¥680</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card">
+            <div class="menu-card__img">
+              <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="320" height="200" fill="#FFF8F0"/>
+                <!-- グラス -->
+                <path d="M130 60 L120 165 L200 165 L190 60 Z" fill="rgba(255,255,255,0.8)" stroke="#F0D8B8" stroke-width="2"/>
+                <!-- 飲み物（グラデーション） -->
+                <path d="M131 65 L121 160 L199 160 L189 65 Z" fill="url(#smoothieGrad)"/>
+                <!-- 泡 -->
+                <ellipse cx="160" cy="67" rx="30" ry="8" fill="#FFE8D0"/>
+                <!-- フルーツ -->
+                <circle cx="175" cy="55" r="15" fill="#FF8080"/>
+                <path d="M172 42 Q175 35 178 42" stroke="#7DC070" stroke-width="2" fill="none"/>
+                <!-- ストロー -->
+                <rect x="170" y="45" width="5" height="90" rx="2.5" fill="#FFB0A0"/>
+                <defs>
+                  <linearGradient id="smoothieGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:#FFB0A0"/>
+                    <stop offset="100%" style="stop-color:#FF7060"/>
+                  </linearGradient>
+                </defs>
+                <text x="160" y="188" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#C9A070">Strawberry Smoothie</text>
+              </svg>
+            </div>
+            <div class="menu-card__body">
+              <h3>🍓 いちごスムージー</h3>
+              <p>地元農家の完熟いちごをたっぷり使用。砂糖不使用で体に優しい一杯。</p>
+              <div class="menu-card__price-row">
+                <span class="menu-card__price">¥780</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card">
+            <div class="menu-card__img">
+              <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="320" height="200" fill="#FFF8F0"/>
+                <!-- ティーポット -->
+                <ellipse cx="155" cy="130" rx="55" ry="45" fill="#fff" stroke="#F0D8B8" stroke-width="2"/>
+                <ellipse cx="155" cy="88" rx="40" ry="12" fill="#fff" stroke="#F0D8B8" stroke-width="1.5"/>
+                <rect x="140" y="76" width="30" height="14" rx="7" fill="#E8D0B8"/>
+                <!-- スパウト -->
+                <path d="M210 120 Q240 110 238 130" stroke="#F0D8B8" stroke-width="8" fill="none" stroke-linecap="round"/>
+                <!-- ハンドル -->
+                <path d="M100 110 Q70 110 70 130 Q70 150 100 150" stroke="#F0D8B8" stroke-width="6" fill="none" stroke-linecap="round"/>
+                <!-- 中のお茶 -->
+                <ellipse cx="155" cy="128" rx="48" ry="38" fill="#D4E8A0" opacity="0.5"/>
+                <!-- 葉っぱ柄 -->
+                <ellipse cx="145" cy="125" rx="10" ry="6" fill="#A8D080" transform="rotate(-20, 145, 125)" opacity="0.6"/>
+                <ellipse cx="165" cy="128" rx="10" ry="6" fill="#90C070" transform="rotate(15, 165, 128)" opacity="0.6"/>
+                <text x="155" y="185" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#C9A070">Herb Tea</text>
+              </svg>
+            </div>
+            <div class="menu-card__body">
+              <span class="menu-card__tag new">NEW</span>
+              <h3>🌿 ハーブティー</h3>
+              <p>自家栽培のカモミールやレモンバームをブレンド。リラックスタイムにぴったり。</p>
+              <div class="menu-card__price-row">
+                <span class="menu-card__price">¥580</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- スイーツ -->
+      <div class="menu__content" id="tab-sweets">
+        <div class="menu__grid">
+          <div class="menu-card">
+            <div class="menu-card__img">
+              <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="320" height="200" fill="#FFF8F0"/>
+                <!-- ケーキプレート -->
+                <ellipse cx="160" cy="160" rx="90" ry="18" fill="#fff" stroke="#F0D8B8" stroke-width="1.5"/>
+                <!-- ケーキ本体 -->
+                <rect x="100" y="100" width="120" height="62" rx="4" fill="#F5D0E0"/>
+                <rect x="100" y="100" width="120" height="20" rx="4" fill="#FFB6C8"/>
+                <!-- フロスティング -->
+                <path d="M95 100 Q105 88 120 98 Q135 88 150 100 Q165 88 180 100 Q195 88 210 100 Q220 88 225 100" fill="#fff" stroke="#FFB6C8" stroke-width="1"/>
+                <!-- いちご -->
+                <polygon points="148,75 155,62 162,75" fill="#FF6060"/>
+                <ellipse cx="155" cy="76" rx="8" ry="10" fill="#FF5050"/>
+                <path d="M152 64 Q155 58 158 64" stroke="#7DC070" stroke-width="1.5" fill="none"/>
+                <!-- 猫の顔デコ -->
+                <circle cx="160" cy="128" r="18" fill="#fff" stroke="#FFB6C8" stroke-width="1"/>
+                <circle cx="153" cy="124" r="4" fill="#5C3D2E"/>
+                <circle cx="167" cy="124" r="4" fill="#5C3D2E"/>
+                <ellipse cx="160" cy="131" rx="3" ry="2" fill="#FFB6C1"/>
+                <path d="M157 134 Q160 138 163 134" fill="none" stroke="#E8A0A0" stroke-width="1"/>
+                <polygon points="152,118 148,111 156,116" fill="#F5D0E0"/>
+                <polygon points="168,118 172,111 164,116" fill="#F5D0E0"/>
+                <text x="160" y="188" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#C9A070">Neko Shortcake</text>
+              </svg>
+            </div>
+            <div class="menu-card__body">
+              <span class="menu-card__tag">看板メニュー</span>
+              <h3>🐱 ねこショートケーキ</h3>
+              <p>猫の顔が可愛いショートケーキ。ふわふわのスポンジと濃厚クリームが絶品。</p>
+              <div class="menu-card__price-row">
+                <span class="menu-card__price">¥780</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card">
+            <div class="menu-card__img">
+              <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="320" height="200" fill="#FFF8F0"/>
+                <!-- ワッフル -->
+                <ellipse cx="160" cy="150" rx="95" ry="20" fill="#fff" stroke="#F0D8B8" stroke-width="1.5"/>
+                <rect x="90" y="110" width="140" height="42" rx="6" fill="#E8B860"/>
+                <!-- ワッフルの格子 -->
+                <line x1="90" y1="124" x2="230" y2="124" stroke="#D4A040" stroke-width="1.5"/>
+                <line x1="90" y1="138" x2="230" y2="138" stroke="#D4A040" stroke-width="1.5"/>
+                <line x1="113" y1="110" x2="113" y2="152" stroke="#D4A040" stroke-width="1.5"/>
+                <line x1="136" y1="110" x2="136" y2="152" stroke="#D4A040" stroke-width="1.5"/>
+                <line x1="159" y1="110" x2="159" y2="152" stroke="#D4A040" stroke-width="1.5"/>
+                <line x1="182" y1="110" x2="182" y2="152" stroke="#D4A040" stroke-width="1.5"/>
+                <line x1="205" y1="110" x2="205" y2="152" stroke="#D4A040" stroke-width="1.5"/>
+                <!-- アイスクリーム -->
+                <ellipse cx="160" cy="108" rx="35" ry="14" fill="#FFEEDD"/>
+                <ellipse cx="145" cy="95" rx="25" ry="18" fill="#FFD0A0"/>
+                <ellipse cx="165" cy="92" rx="25" ry="18" fill="#FFC090"/>
+                <!-- いちごソース -->
+                <path d="M140 88 Q160 78 180 85" stroke="#FF8090" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <!-- バナナ -->
+                <path d="M115 105 Q125 95 135 100" stroke="#FFE060" stroke-width="5" fill="none" stroke-linecap="round"/>
+                <text x="160" y="185" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#C9A070">Fluffy Waffle</text>
+              </svg>
+            </div>
+            <div class="menu-card__body">
+              <h3>🧇 ふわふわワッフル</h3>
+              <p>外はサクッ、中はもちもちのベルギーワッフル。アイスとフルーツのトッピング付き。</p>
+              <div class="menu-card__price-row">
+                <span class="menu-card__price">¥880</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card">
+            <div class="menu-card__img">
+              <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="320" height="200" fill="#FFF8F0"/>
+                <!-- ドーナツ -->
+                <circle cx="160" cy="115" r="65" fill="#F5C87A"/>
+                <circle cx="160" cy="115" r="25" fill="#FFF8F0"/>
+                <!-- グレーズ -->
+                <circle cx="160" cy="115" r="60" fill="none" stroke="#FFB6C1" stroke-width="8" stroke-dasharray="10,5" opacity="0.7"/>
+                <!-- スプリンクル -->
+                <rect x="120" y="75" width="14" height="5" rx="2.5" fill="#FF8090" transform="rotate(30, 127, 77)"/>
+                <rect x="175" y="72" width="14" height="5" rx="2.5" fill="#80B0FF" transform="rotate(-20, 182, 74)"/>
+                <rect x="105" y="110" width="14" height="5" rx="2.5" fill="#FFE060" transform="rotate(10, 112, 112)"/>
+                <rect x="195" y="115" width="14" height="5" rx="2.5" fill="#A0E090" transform="rotate(-40, 202, 117)"/>
+                <rect x="145" y="65" width="14" height="5" rx="2.5" fill="#FFB060" transform="rotate(50, 152, 67)"/>
+                <rect x="165" y="155" width="14" height="5" rx="2.5" fill="#FF8090" transform="rotate(-10, 172, 157)"/>
+                <rect x="200" y="145" width="14" height="5" rx="2.5" fill="#C090FF" transform="rotate(60, 207, 147)"/>
+                <!-- 犬の顔 -->
+                <circle cx="160" cy="115" r="22" fill="#E8C070"/>
+                <circle cx="152" cy="111" r="5" fill="#fff"/>
+                <circle cx="168" cy="111" r="5" fill="#fff"/>
+                <circle cx="153" cy="112" r="3" fill="#5C3D2E"/>
+                <circle cx="169" cy="112" r="3" fill="#5C3D2E"/>
+                <ellipse cx="160" cy="119" rx="8" ry="6" fill="#F0D090"/>
+                <ellipse cx="160" cy="117" rx="5" ry="4" fill="#5C3D2E"/>
+                <path d="M153 123 Q160 129 167 123" fill="#FF9090" stroke="#E07070" stroke-width="1"/>
+                <ellipse cx="144" cy="105" rx="9" ry="13" fill="#D4A050" transform="rotate(-15, 144, 105)"/>
+                <ellipse cx="176" cy="105" rx="9" ry="13" fill="#D4A050" transform="rotate(15, 176, 105)"/>
+                <text x="160" y="188" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#C9A070">Puppy Donut</text>
+              </svg>
+            </div>
+            <div class="menu-card__body">
+              <span class="menu-card__tag new">NEW</span>
+              <h3>🐶 わんこドーナツ</h3>
+              <p>犬の顔デコレーションが可愛いポップドーナツ。カラフルなスプリンクルが映えます。</p>
+              <div class="menu-card__price-row">
+                <span class="menu-card__price">¥480</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu__wave-bottom">
+      <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,30 C360,0 720,60 1080,30 C1260,15 1380,45 1440,30 L1440,60 L0,60 Z" fill="#fff"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ===================== ANIMALS ===================== -->
+  <section class="animals" id="animals">
+    <div class="animals__inner">
+      <div class="animals__header">
+        <p class="section-label">Our Friends</p>
+        <h2 class="section-title">店内の住人たちをご紹介</h2>
+        <p>彼らに会いに、ぜひ遊びに来てください。</p>
+      </div>
+
+      <div class="animals__grid">
+        <!-- ミルク -->
+        <div class="animal-card">
+          <div class="animal-card__avatar">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="100" cy="100" r="90" fill="#FFF5E8"/>
+              <!-- 猫・白 -->
+              <ellipse cx="100" cy="130" rx="55" ry="55" fill="#fff"/>
+              <circle cx="100" cy="85" r="50" fill="#fff"/>
+              <!-- 耳 -->
+              <polygon points="65,52 48,20 82,42" fill="#fff"/>
+              <polygon points="135,52 152,20 118,42" fill="#fff"/>
+              <polygon points="67,50 53,26 80,44" fill="#FFB6C1"/>
+              <polygon points="133,50 147,26 120,44" fill="#FFB6C1"/>
+              <!-- 目 -->
+              <circle cx="82" cy="78" r="13" fill="#7DC8E8"/>
+              <circle cx="118" cy="78" r="13" fill="#7DC8E8"/>
+              <circle cx="85" cy="80" r="8" fill="#2C1A0E"/>
+              <circle cx="121" cy="80" r="8" fill="#2C1A0E"/>
+              <circle cx="87" cy="78" r="3" fill="#fff"/>
+              <circle cx="123" cy="78" r="3" fill="#fff"/>
+              <!-- 鼻 -->
+              <ellipse cx="100" cy="92" rx="5" ry="4" fill="#FFB6C1"/>
+              <!-- ひげ -->
+              <line x1="105" y1="91" x2="130" y2="85" stroke="#ddd" stroke-width="1.5"/>
+              <line x1="105" y1="94" x2="130" y2="95" stroke="#ddd" stroke-width="1.5"/>
+              <line x1="95" y1="91" x2="70" y2="85" stroke="#ddd" stroke-width="1.5"/>
+              <line x1="95" y1="94" x2="70" y2="95" stroke="#ddd" stroke-width="1.5"/>
+              <!-- 口 -->
+              <path d="M95 97 Q100 103 105 97" fill="none" stroke="#FFB6C1" stroke-width="1.5" stroke-linecap="round"/>
+              <!-- 首輪 -->
+              <path d="M65 120 Q100 132 135 120" stroke="#FF9090" stroke-width="5" fill="none" stroke-linecap="round"/>
+              <circle cx="100" cy="127" r="5" fill="#FFD060"/>
+              <!-- しっぽ -->
+              <path d="M155 165 Q185 150 180 130 Q175 110 160 115" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="animal-card__info">
+            <h3>ミルク <span>🤍</span></h3>
+            <p class="animal-card__meta">白猫・メス・5歳</p>
+            <p>おっとりした性格で、常連さんの膝の上が定位置。食後のコーヒータイムに現れる確率が高め。</p>
+            <div class="animal-card__traits">
+              <span>人懐っこい</span>
+              <span>ゴロゴロ好き</span>
+              <span>昼寝の達人</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- モカ -->
+        <div class="animal-card">
+          <div class="animal-card__avatar">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="100" cy="100" r="90" fill="#FFF5E8"/>
+              <ellipse cx="100" cy="130" rx="55" ry="55" fill="#C8905A"/>
+              <circle cx="100" cy="85" r="50" fill="#D4A060"/>
+              <!-- 縞模様 -->
+              <path d="M70 70 Q100 60 130 70" stroke="#B87840" stroke-width="3" fill="none" opacity="0.6"/>
+              <path d="M68 80 Q100 70 132 80" stroke="#B87840" stroke-width="2.5" fill="none" opacity="0.6"/>
+              <!-- 耳 -->
+              <polygon points="65,52 48,20 82,42" fill="#D4A060"/>
+              <polygon points="135,52 152,20 118,42" fill="#D4A060"/>
+              <polygon points="67,50 53,26 80,44" fill="#FFB6C1"/>
+              <polygon points="133,50 147,26 120,44" fill="#FFB6C1"/>
+              <!-- 目（緑） -->
+              <circle cx="82" cy="78" r="13" fill="#80C860"/>
+              <circle cx="118" cy="78" r="13" fill="#80C860"/>
+              <circle cx="85" cy="80" r="8" fill="#2C1A0E"/>
+              <circle cx="121" cy="80" r="8" fill="#2C1A0E"/>
+              <circle cx="87" cy="78" r="3" fill="#fff"/>
+              <circle cx="123" cy="78" r="3" fill="#fff"/>
+              <!-- 鼻 -->
+              <ellipse cx="100" cy="92" rx="5" ry="4" fill="#FF9090"/>
+              <line x1="105" y1="91" x2="130" y2="85" stroke="#C8905A" stroke-width="1.5"/>
+              <line x1="105" y1="94" x2="130" y2="95" stroke="#C8905A" stroke-width="1.5"/>
+              <line x1="95" y1="91" x2="70" y2="85" stroke="#C8905A" stroke-width="1.5"/>
+              <line x1="95" y1="94" x2="70" y2="95" stroke="#C8905A" stroke-width="1.5"/>
+              <path d="M95 97 Q100 103 105 97" fill="none" stroke="#FF9090" stroke-width="1.5" stroke-linecap="round"/>
+              <!-- 首輪 -->
+              <path d="M65 120 Q100 132 135 120" stroke="#7DC8E8" stroke-width="5" fill="none" stroke-linecap="round"/>
+              <circle cx="100" cy="127" r="5" fill="#FFD060"/>
+              <!-- しっぽ -->
+              <path d="M155 165 Q185 150 180 130 Q175 110 160 115" fill="none" stroke="#D4A060" stroke-width="12" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="animal-card__info">
+            <h3>モカ <span>🧡</span></h3>
+            <p class="animal-card__meta">茶トラ・オス・3歳</p>
+            <p>元気いっぱいの末っ子。テーブルの上に乗ろうとするいたずらっ子ですが、愛嬌は抜群です。</p>
+            <div class="animal-card__traits">
+              <span>やんちゃ</span>
+              <span>甘えん坊</span>
+              <span>おもちゃ好き</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ムース -->
+        <div class="animal-card">
+          <div class="animal-card__avatar">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="100" cy="100" r="90" fill="#FFF5E8"/>
+              <!-- ゴールデンレトリバー -->
+              <ellipse cx="100" cy="135" rx="60" ry="55" fill="#E8C068"/>
+              <circle cx="100" cy="85" r="55" fill="#EACA70"/>
+              <!-- 耳 -->
+              <ellipse cx="55" cy="90" rx="22" ry="35" fill="#D4A040" transform="rotate(-15, 55, 90)"/>
+              <ellipse cx="145" cy="90" rx="22" ry="35" fill="#D4A040" transform="rotate(15, 145, 90)"/>
+              <!-- マズル -->
+              <ellipse cx="100" cy="100" rx="30" ry="22" fill="#F0D888"/>
+              <!-- 目 -->
+              <circle cx="78" cy="78" r="14" fill="#fff"/>
+              <circle cx="122" cy="78" r="14" fill="#fff"/>
+              <circle cx="81" cy="80" r="9" fill="#5C3D2E"/>
+              <circle cx="125" cy="80" r="9" fill="#5C3D2E"/>
+              <circle cx="83" cy="78" r="3.5" fill="#fff"/>
+              <circle cx="127" cy="78" r="3.5" fill="#fff"/>
+              <!-- 鼻 -->
+              <ellipse cx="100" cy="92" rx="11" ry="9" fill="#5C3D2E"/>
+              <ellipse cx="97" cy="90" rx="4" ry="3" fill="#fff" opacity="0.35"/>
+              <!-- 口と舌 -->
+              <path d="M80 105 Q100 118 120 105" fill="#fff" stroke="#E0A080" stroke-width="1"/>
+              <ellipse cx="100" cy="112" rx="14" ry="11" fill="#FF8888"/>
+              <!-- 首輪 -->
+              <path d="M62 140 Q100 155 138 140" stroke="#FF9060" stroke-width="6" fill="none" stroke-linecap="round"/>
+              <circle cx="100" cy="150" r="6" fill="#FFD060"/>
+              <!-- しっぽ（後ろ） -->
+              <path d="M155 175 Q185 160 182 138" fill="none" stroke="#E8C068" stroke-width="15" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="animal-card__info">
+            <h3>ムース <span>💛</span></h3>
+            <p class="animal-card__meta">ゴールデンレトリバー・オス・4歳</p>
+            <p>しつけが行き届いた穏やかな男の子。お客様が来るたびに尻尾を振って出迎えてくれます。</p>
+            <div class="animal-card__traits">
+              <span>おりこうさん</span>
+              <span>甘え上手</span>
+              <span>お散歩大好き</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ACCESS ===================== -->
+  <section class="access" id="access">
+    <div class="access__wave-top">
+      <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,15 1440,30 L1440,0 L0,0 Z" fill="#fff"/>
+      </svg>
+    </div>
+    <div class="access__inner">
+      <div class="access__left">
+        <p class="section-label">Access</p>
+        <h2 class="section-title">アクセス</h2>
+
+        <div class="access__items">
+          <div class="access__item">
+            <div class="access__item-icon">📍</div>
+            <div>
+              <h4>住所</h4>
+              <p>東京都世田谷区下北沢2-14-8<br />ペットビル 1F</p>
+            </div>
+          </div>
+          <div class="access__item">
+            <div class="access__item-icon">🚃</div>
+            <div>
+              <h4>最寄り駅</h4>
+              <p>小田急線 下北沢駅 南口より徒歩3分<br />京王井の頭線 下北沢駅より徒歩4分</p>
+            </div>
+          </div>
+          <div class="access__item">
+            <div class="access__item-icon">🕐</div>
+            <div>
+              <h4>営業時間</h4>
+              <p>
+                平日 11:00 – 21:00<br />
+                土日祝 10:00 – 22:00<br />
+                <span class="closed-day">定休日：火曜日</span>
+              </p>
+            </div>
+          </div>
+          <div class="access__item">
+            <div class="access__item-icon">📞</div>
+            <div>
+              <h4>電話番号</h4>
+              <p><a href="tel:03-9876-5432">03-9876-5432</a></p>
+            </div>
+          </div>
+          <div class="access__item">
+            <div class="access__item-icon">🐾</div>
+            <div>
+              <h4>ペット同伴</h4>
+              <p>テラス席のみペット同伴OK<br />（リード着用・予防接種証明必要）</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="#reserve" class="btn btn--primary" id="reserve">席を予約する 🐾</a>
+      </div>
+
+      <div class="access__right">
+        <div class="access__map">
+          <svg viewBox="0 0 560 440" xmlns="http://www.w3.org/2000/svg">
+            <rect width="560" height="440" fill="#FBF5EC"/>
+            <!-- 道路 -->
+            <rect x="0" y="160" width="560" height="35" fill="#E8DDD0"/>
+            <rect x="0" y="168" width="560" height="19" fill="#DDD0C0"/>
+            <rect x="250" y="0" width="35" height="440" fill="#E8DDD0"/>
+            <rect x="258" y="0" width="19" height="440" fill="#DDD0C0"/>
+            <rect x="0" y="290" width="560" height="25" fill="#E8DDD0"/>
+            <rect x="80" y="0" width="25" height="440" fill="#E8DDD0"/>
+            <rect x="420" y="0" width="25" height="440" fill="#E8DDD0"/>
+            <!-- センターライン -->
+            <line x1="0" y1="177" x2="560" y2="177" stroke="#fff" stroke-width="2" stroke-dasharray="20,12"/>
+            <line x1="267" y1="0" x2="267" y2="440" stroke="#fff" stroke-width="2" stroke-dasharray="20,12"/>
+            <!-- 建物ブロック -->
+            <rect x="20" y="20" width="50" height="130" rx="4" fill="#E0D4C4"/>
+            <rect x="110" y="20" width="130" height="130" rx="4" fill="#E0D4C4"/>
+            <rect x="295" y="20" width="110" height="130" rx="4" fill="#E0D4C4"/>
+            <rect x="450" y="20" width="90" height="130" rx="4" fill="#E0D4C4"/>
+            <rect x="20" y="205" width="50" height="75" rx="4" fill="#E0D4C4"/>
+            <rect x="110" y="205" width="130" height="75" rx="4" fill="#E0D4C4"/>
+            <rect x="295" y="205" width="110" height="75" rx="4" fill="#E0D4C4"/>
+            <rect x="450" y="205" width="90" height="75" rx="4" fill="#E0D4C4"/>
+            <rect x="20" y="325" width="50" height="100" rx="4" fill="#E0D4C4"/>
+            <rect x="110" y="325" width="130" height="100" rx="4" fill="#E0D4C4"/>
+            <rect x="295" y="325" width="110" height="100" rx="4" fill="#E0D4C4"/>
+            <rect x="450" y="325" width="90" height="100" rx="4" fill="#E0D4C4"/>
+            <!-- 緑地 -->
+            <circle cx="175" cy="250" r="18" fill="#A8D890" opacity="0.7"/>
+            <circle cx="385" cy="252" r="15" fill="#A8D890" opacity="0.7"/>
+            <circle cx="170" cy="370" r="12" fill="#A8D890" opacity="0.7"/>
+            <!-- 目的地ピン -->
+            <circle cx="267" cy="173" r="24" fill="#FF7B6B"/>
+            <circle cx="267" cy="171" r="14" fill="#fff"/>
+            <circle cx="267" cy="171" r="6" fill="#FF7B6B"/>
+            <!-- 肉球ピン -->
+            <text x="267" y="176" text-anchor="middle" font-size="10">🐾</text>
+            <!-- ラベル -->
+            <rect x="185" y="200" width="164" height="44" rx="8" fill="#fff" filter="url(#mapShadow)"/>
+            <text x="267" y="220" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="13" fill="#5C3D2E">Paws &amp; Plates</text>
+            <text x="267" y="237" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#A08060">下北沢 2-14-8</text>
+            <defs>
+              <filter id="mapShadow">
+                <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#00000018"/>
+              </filter>
+            </defs>
+          </svg>
+          <a href="https://maps.google.com" target="_blank" class="map__btn">Google マップで開く →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="footer__paw-track" aria-hidden="true">
+      <span>🐾</span><span>🐾</span><span>🐾</span><span>🐾</span><span>🐾</span><span>🐾</span><span>🐾</span><span>🐾</span>
+    </div>
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <p class="footer__logo">🐾 Paws &amp; Plates</p>
+        <p class="footer__tagline">ねこ・いぬ・おいしい料理、全部そろってます。</p>
+        <div class="footer__social">
+          <a href="#" aria-label="Instagram">📸</a>
+          <a href="#" aria-label="Twitter">🐦</a>
+          <a href="#" aria-label="LINE">💬</a>
+        </div>
+      </div>
+      <div class="footer__links">
+        <div>
+          <h4>Menu</h4>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#animals">Friends</a></li>
+            <li><a href="#access">Access</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Info</h4>
+          <ul>
+            <li><a href="#">プライバシーポリシー</a></li>
+            <li><a href="#">よくある質問</a></li>
+            <li><a href="#">アレルギー情報</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer__copy">
+      <p>© 2026 Paws & Plates. Made with 🐾 and ❤️</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
