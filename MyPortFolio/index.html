@@ -334,6 +334,82 @@
 
     .contact-box p { margin-bottom: 28px; }
 
+    /* ======= YouTube セクション ======= */
+    .yt-section {
+      position: relative;
+      width: 100%;
+      padding: 100px 48px 80px;
+      background: #080808;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .yt-section-header {
+      text-align: center;
+    }
+
+    .yt-section-header h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .yt-section-header p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.06em;
+    }
+
+    .yt-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .yt-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .yt-item .yt-embed-wrap {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+    }
+
+    .yt-item .yt-embed-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .yt-item .yt-label {
+      padding: 14px 18px;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    @media (max-width: 900px) {
+      .yt-grid { grid-template-columns: 1fr; max-width: 560px; }
+      .yt-section { padding: 80px 24px 60px; }
+    }
+
     /* フッター */
     footer {
       background: #000;
@@ -364,6 +440,7 @@
     <div class="nav-links">
       <a href="#hero">Top</a>
       <a href="#v1">Works</a>
+      <a href="#youtube">YouTube</a>
       <a href="#gallery">Gallery</a>
       <a href="#contact">Contact</a>
       <a href="https://github.com/AkiraMihara1289/MyPortfolio" target="_blank" rel="noopener">GitHub ↗</a>
@@ -373,7 +450,6 @@
   <!-- ======== HERO ======== -->
   <section class="sec" id="hero">
     <div class="sec-img" style="background-image: url('./PF.png');"></div>
-    <div class="ov" style="background: linear-gradient(160deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.7) 100%);"></div>
 
     <div class="scroll-hint">scroll</div>
   </section>
@@ -394,7 +470,7 @@
       <span class="num">02</span>
       <span class="label-text">Work 02</span>
     </div>
-    <video class="sec-video-cover" src="./2.mp4" autoplay muted loop playsinline preload="metadata"></video>
+    <video class="sec-video" src="./2.mp4" autoplay muted loop playsinline preload="metadata"></video>
     <div class="scroll-hint">scroll</div>
   </section>
 
@@ -404,7 +480,7 @@
       <span class="num">03</span>
       <span class="label-text">Work 03</span>
     </div>
-    <video class="sec-video-cover" src="./3.mp4" autoplay muted loop playsinline preload="metadata"></video>
+    <video class="sec-video" src="./3.mp4" autoplay muted loop playsinline preload="metadata"></video>
     <div class="scroll-hint">scroll</div>
   </section>
 
@@ -414,7 +490,7 @@
       <span class="num">04</span>
       <span class="label-text">Work 04</span>
     </div>
-    <video class="sec-video-cover" src="./4.mp4" autoplay muted loop playsinline preload="metadata"></video>
+    <video class="sec-video" src="./4.mp4" autoplay muted loop playsinline preload="metadata"></video>
     <div class="scroll-hint">scroll</div>
   </section>
 
@@ -436,6 +512,44 @@
     </div>
     <video class="sec-video" src="./8.mp4" autoplay muted loop playsinline preload="metadata"></video>
     <div class="scroll-hint">scroll</div>
+  </section>
+
+  <!-- ======== YOUTUBE ======== -->
+  <section class="yt-section" id="youtube">
+    <div class="yt-section-header">
+      <span class="tag">YouTube</span>
+      <h2>Video Works</h2>
+      <p>YouTubeで公開している映像作品です。</p>
+    </div>
+
+    <div class="yt-grid">
+      <div class="yt-item">
+        <div class="yt-embed-wrap">
+          <iframe src="https://www.youtube.com/embed/GNHDcUYDhSk" title="YouTube video 1"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen loading="lazy"></iframe>
+        </div>
+        <span class="yt-label">Video 01</span>
+      </div>
+
+      <div class="yt-item">
+        <div class="yt-embed-wrap">
+          <iframe src="https://www.youtube.com/embed/oXhrMMxpMfw" title="YouTube video 2"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen loading="lazy"></iframe>
+        </div>
+        <span class="yt-label">Video 02</span>
+      </div>
+
+      <div class="yt-item">
+        <div class="yt-embed-wrap">
+          <iframe src="https://www.youtube.com/embed/CLzW-r_4Ve4" title="YouTube video 3"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen loading="lazy"></iframe>
+        </div>
+        <span class="yt-label">Video 03</span>
+      </div>
+    </div>
   </section>
 
   <!-- ======== GALLERY ======== -->
