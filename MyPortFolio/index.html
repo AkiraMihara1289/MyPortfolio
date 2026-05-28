@@ -8,13 +8,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
       font-family: "Noto Sans JP", sans-serif;
       color: #fff;
-      background: #0d0010;
+      background: #080808;
       overflow-x: hidden;
     }
 
@@ -25,31 +24,33 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      padding: 18px 40px;
+      padding: 18px 48px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(10, 0, 18, 0.45);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
     .logo {
       font-family: "Playfair Display", serif;
-      font-size: 1.2rem;
+      font-size: 1.18rem;
       letter-spacing: 0.06em;
-      color: #ffe6f8;
+      color: #fff;
     }
 
     .nav-links {
       display: flex;
-      gap: 28px;
-      font-size: 0.8rem;
-      letter-spacing: 0.08em;
-      color: rgba(255,255,255,0.7);
+      gap: 32px;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
     }
 
-    .nav-links a:hover { color: #ffb8e8; }
+    .nav-links a:hover { color: #fff; transition: color 0.2s; }
 
     /* ========= 共通セクション ========= */
     .sec {
@@ -61,15 +62,16 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      background: #000;
     }
 
-    /* 全画面背景動画 */
+    /* 全画面背景動画 — contain で全体表示 */
     .sec-video {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       z-index: 0;
     }
 
@@ -82,137 +84,154 @@
       z-index: 0;
     }
 
-    /* グラデーションオーバーレイ */
+    /* 薄いオーバーレイ */
     .ov {
       position: absolute;
       inset: 0;
       z-index: 1;
     }
 
-    /* テキストパネル */
-    .box {
+    /* ヒーローテキストパネル */
+    .hero-box {
       position: relative;
       z-index: 2;
       text-align: center;
-      padding: 40px 48px;
-      max-width: 760px;
+      padding: 52px 60px;
+      max-width: 780px;
       width: 90%;
-      background: rgba(10, 0, 20, 0.38);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,255,255,0.22);
-      border-radius: 24px;
+      background: rgba(0, 0, 0, 0.42);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 4px;
     }
 
-    .box .tag {
+    .tag {
       display: inline-block;
-      font-size: 0.7rem;
-      letter-spacing: 0.22em;
+      font-size: 0.68rem;
+      letter-spacing: 0.26em;
       text-transform: uppercase;
-      color: #ffb8e8;
-      margin-bottom: 14px;
-      padding: 5px 14px;
-      border: 1px solid rgba(255,180,230,0.5);
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 18px;
+      padding: 5px 16px;
+      border: 1px solid rgba(255,255,255,0.25);
       border-radius: 999px;
     }
 
-    .box h1, .box h2 {
+    .hero-box h1 {
       font-family: "Playfair Display", serif;
       font-weight: 700;
-      font-size: clamp(2rem, 5vw, 3.4rem);
-      line-height: 1.22;
+      font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+      line-height: 1.2;
       letter-spacing: 0.01em;
-      margin-bottom: 14px;
-      text-shadow: 0 4px 28px rgba(0,0,0,0.5);
+      margin-bottom: 18px;
+      text-shadow: 0 4px 32px rgba(0,0,0,0.6);
+      color: #fff;
     }
 
-    .box h2 { font-size: clamp(1.5rem, 3.5vw, 2.4rem); }
+    .hero-box h1 em {
+      font-style: italic;
+      color: rgba(255,255,255,0.75);
+    }
 
-    .box p {
-      font-size: clamp(0.9rem, 1.8vw, 1rem);
-      color: rgba(255,255,255,0.82);
-      line-height: 1.85;
-      margin-bottom: 22px;
+    .hero-box p {
+      font-size: clamp(0.88rem, 1.6vw, 0.98rem);
+      color: rgba(255,255,255,0.7);
+      line-height: 1.9;
+      margin-bottom: 28px;
     }
 
     .btn-row {
       display: flex;
-      gap: 12px;
+      gap: 14px;
       justify-content: center;
       flex-wrap: wrap;
     }
 
     .btn {
       display: inline-block;
-      padding: 12px 28px;
-      border-radius: 999px;
-      font-size: 0.86rem;
+      padding: 13px 32px;
+      border-radius: 2px;
+      font-size: 0.84rem;
       font-weight: 400;
-      letter-spacing: 0.06em;
-      transition: 0.25s ease;
+      letter-spacing: 0.08em;
+      transition: 0.22s ease;
     }
 
-    .btn-pink {
-      background: linear-gradient(120deg, #ff6fc8 0%, #c47bff 100%);
-      color: #fff;
-      box-shadow: 0 8px 24px rgba(255,100,200,0.4);
+    .btn-white {
+      background: #fff;
+      color: #000;
     }
 
-    .btn-pink:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(255,100,200,0.5); }
+    .btn-white:hover { background: rgba(255,255,255,0.88); }
 
     .btn-outline {
-      border: 1.5px solid rgba(255,255,255,0.55);
+      border: 1px solid rgba(255,255,255,0.5);
       color: #fff;
     }
 
-    .btn-outline:hover { background: rgba(255,255,255,0.14); }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); }
 
     /* スクロール促し */
     .scroll-hint {
       position: absolute;
-      bottom: 28px;
+      bottom: 32px;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 3;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      color: rgba(255,255,255,0.5);
+      z-index: 5;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
     .scroll-hint::after {
       content: "";
       display: block;
       width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
-      animation: scrollLine 1.6s ease-in-out infinite;
+      height: 38px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+      animation: scrollLine 1.8s ease-in-out infinite;
     }
 
     @keyframes scrollLine {
-      0%, 100% { opacity: 0.5; transform: scaleY(1); }
-      50% { opacity: 1; transform: scaleY(1.2); }
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50%       { opacity: 1;   transform: scaleY(1.15); }
     }
 
-    /* 番号ラベル */
-    .num {
+    /* 番号ラベル — 動画セクション左上 */
+    .work-label {
       position: absolute;
-      top: 100px;
-      left: 44px;
+      top: 88px;
+      left: 48px;
       z-index: 3;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .work-label .num {
       font-family: "Playfair Display", serif;
-      font-size: 6rem;
+      font-size: 5.5rem;
       font-weight: 700;
       line-height: 1;
-      color: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.07);
       user-select: none;
       pointer-events: none;
     }
 
-    /* images セクション: 浮かぶアイコン */
+    .work-label .label-text {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* Gallery セクション：浮かぶアイコン */
     .float-icons {
       position: absolute;
       inset: 0;
@@ -222,30 +241,57 @@
 
     .float-icons img {
       position: absolute;
-      width: 80px;
-      opacity: 0.9;
-      filter: drop-shadow(0 4px 18px rgba(255,120,200,0.5));
-      animation: floatY 4s ease-in-out infinite;
+      width: 76px;
+      opacity: 0.85;
+      filter: drop-shadow(0 4px 20px rgba(255,255,255,0.15));
+      animation: floatY 4.5s ease-in-out infinite;
     }
 
-    .float-icons img:nth-child(1) { top: 22%; left: 10%; animation-delay: 0s; }
-    .float-icons img:nth-child(2) { top: 18%; right: 12%; animation-delay: 0.8s; }
-    .float-icons img:nth-child(3) { bottom: 24%; left: 50%; transform: translateX(-50%); animation-delay: 1.6s; }
+    .float-icons img:nth-child(1) { top: 22%; left:  10%; animation-delay: 0s; }
+    .float-icons img:nth-child(2) { top: 18%; right: 12%; animation-delay: 0.9s; }
+    .float-icons img:nth-child(3) { bottom: 24%; left: 50%; transform: translateX(-50%); animation-delay: 1.8s; }
 
-    @keyframes floatY {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-16px); }
-    }
+    @keyframes floatY { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-18px); } }
 
     .float-icons img:nth-child(3) {
-      animation: floatY3 4s ease-in-out infinite 1.6s;
+      animation: floatY3 4.5s ease-in-out infinite 1.8s;
     }
     @keyframes floatY3 {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(-16px); }
+      0%,100%{ transform: translateX(-50%) translateY(0); }
+      50%    { transform: translateX(-50%) translateY(-18px); }
     }
 
-    /* email iframe背景 */
+    /* Gallery テキストパネル */
+    .gallery-box {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      padding: 44px 52px;
+      max-width: 620px;
+      width: 88%;
+      background: rgba(0,0,0,0.48);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 4px;
+    }
+
+    .gallery-box h2, .contact-box h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: #fff;
+    }
+
+    .gallery-box p, .contact-box p {
+      font-size: clamp(0.86rem, 1.5vw, 0.95rem);
+      color: rgba(255,255,255,0.65);
+      line-height: 1.9;
+      margin-bottom: 0;
+    }
+
+    /* Contact (email.html iframe背景) */
     .email-bg-wrap {
       position: absolute;
       inset: 0;
@@ -260,25 +306,43 @@
       transform: scale(1.02);
       transform-origin: center center;
       pointer-events: none;
-      filter: saturate(1.1);
     }
+
+    .contact-box {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      padding: 48px 56px;
+      max-width: 640px;
+      width: 88%;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 4px;
+    }
+
+    .contact-box p { margin-bottom: 28px; }
 
     /* フッター */
     footer {
-      background: #060009;
+      background: #000;
       text-align: center;
       padding: 40px 20px;
-      color: rgba(255,255,255,0.35);
-      font-size: 0.82rem;
-      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.25);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      border-top: 1px solid rgba(255,255,255,0.06);
     }
 
+    /* ======= レスポンシブ ======= */
     @media (max-width: 600px) {
       nav { padding: 14px 20px; }
       .nav-links { display: none; }
-      .box { padding: 28px 22px; }
-      .num { font-size: 4rem; }
-      .float-icons img { width: 56px; }
+      .hero-box { padding: 32px 24px; }
+      .gallery-box, .contact-box { padding: 30px 22px; }
+      .work-label .num { font-size: 3.5rem; }
+      .float-icons img { width: 54px; }
     }
   </style>
 </head>
@@ -296,17 +360,17 @@
     </div>
   </nav>
 
-  <!-- ======== HERO : PF.png 全画面背景 ======== -->
+  <!-- ======== HERO ======== -->
   <section class="sec" id="hero">
     <div class="sec-img" style="background-image: url('./PF.png');"></div>
-    <div class="ov" style="background: linear-gradient(160deg, rgba(120,30,80,0.52) 0%, rgba(30,0,60,0.65) 100%);"></div>
+    <div class="ov" style="background: linear-gradient(160deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.7) 100%);"></div>
 
-    <div class="box">
+    <div class="hero-box">
       <span class="tag">Portfolio 2026</span>
-      <h1>Design & Create,<br><em style="font-style:italic; color:#ffb8e8;">心を動かすデザインを。</em></h1>
+      <h1>Design & Create,<br><em>心を動かすデザインを。</em></h1>
       <p>LP制作・Webバナー・チラシデザイン・動画編集まで、<br>幅広く手がけるWebクリエイター Lazzlly Lab. のポートフォリオです。</p>
       <div class="btn-row">
-        <a class="btn btn-pink" href="#v1">作品を見る</a>
+        <a class="btn btn-white" href="#v1">作品を見る</a>
         <a class="btn btn-outline" href="https://github.com/AkiraMihara1289/MyPortfolio" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
@@ -314,94 +378,68 @@
     <div class="scroll-hint">scroll</div>
   </section>
 
-  <!-- ======== WORK 01 : 1.mp4 全画面動画背景 ======== -->
+  <!-- ======== WORK 01 ======== -->
   <section class="sec" id="v1">
-    <span class="num">01</span>
+    <div class="work-label">
+      <span class="num">01</span>
+      <span class="label-text">Work 01</span>
+    </div>
     <video class="sec-video" src="./1.mp4" autoplay muted loop playsinline preload="metadata"></video>
-    <div class="ov" style="background: linear-gradient(to bottom, rgba(60,0,40,0.45), rgba(20,0,35,0.6));"></div>
-
-    <div class="box">
-      <span class="tag">Work 01</span>
-      <h2>映像作品</h2>
-      <p>動画背景として全画面に使用。音声なし・ループ再生で常に流れています。</p>
-    </div>
-
     <div class="scroll-hint">scroll</div>
   </section>
 
-  <!-- ======== WORK 02 : 2.mp4 全画面動画背景 ======== -->
+  <!-- ======== WORK 02 ======== -->
   <section class="sec" id="v2">
-    <span class="num">02</span>
+    <div class="work-label">
+      <span class="num">02</span>
+      <span class="label-text">Work 02</span>
+    </div>
     <video class="sec-video" src="./2.mp4" autoplay muted loop playsinline preload="metadata"></video>
-    <div class="ov" style="background: linear-gradient(to bottom, rgba(0,20,60,0.4), rgba(10,0,40,0.65));"></div>
-
-    <div class="box">
-      <span class="tag">Work 02</span>
-      <h2>映像作品</h2>
-      <p>動画背景として全画面に使用。音声なし・ループ再生で常に流れています。</p>
-    </div>
-
     <div class="scroll-hint">scroll</div>
   </section>
 
-  <!-- ======== WORK 03 : 3.mp4 全画面動画背景 ======== -->
+  <!-- ======== WORK 03 ======== -->
   <section class="sec" id="v3">
-    <span class="num">03</span>
+    <div class="work-label">
+      <span class="num">03</span>
+      <span class="label-text">Work 03</span>
+    </div>
     <video class="sec-video" src="./3.mp4" autoplay muted loop playsinline preload="metadata"></video>
-    <div class="ov" style="background: linear-gradient(to bottom, rgba(50,0,80,0.4), rgba(15,0,30,0.65));"></div>
-
-    <div class="box">
-      <span class="tag">Work 03</span>
-      <h2>映像作品</h2>
-      <p>動画背景として全画面に使用。音声なし・ループ再生で常に流れています。</p>
-    </div>
-
     <div class="scroll-hint">scroll</div>
   </section>
 
-  <!-- ======== WORK 04 : 4.mp4 全画面動画背景 ======== -->
+  <!-- ======== WORK 04 ======== -->
   <section class="sec" id="v4">
-    <span class="num">04</span>
+    <div class="work-label">
+      <span class="num">04</span>
+      <span class="label-text">Work 04</span>
+    </div>
     <video class="sec-video" src="./4.mp4" autoplay muted loop playsinline preload="metadata"></video>
-    <div class="ov" style="background: linear-gradient(to bottom, rgba(80,20,0,0.4), rgba(30,10,0,0.65));"></div>
-
-    <div class="box">
-      <span class="tag">Work 04</span>
-      <h2>映像作品</h2>
-      <p>動画背景として全画面に使用。音声なし・ループ再生で常に流れています。</p>
-    </div>
-
     <div class="scroll-hint">scroll</div>
   </section>
 
-  <!-- ======== WORK 05 : 5.mp4 全画面動画背景 ======== -->
+  <!-- ======== WORK 05 ======== -->
   <section class="sec" id="v5">
-    <span class="num">05</span>
-    <video class="sec-video" src="./5.mp4" autoplay muted loop playsinline preload="metadata"></video>
-    <div class="ov" style="background: linear-gradient(to bottom, rgba(0,50,60,0.4), rgba(0,15,30,0.65));"></div>
-
-    <div class="box">
-      <span class="tag">Work 05</span>
-      <h2>映像作品</h2>
-      <p>動画背景として全画面に使用。音声なし・ループ再生で常に流れています。</p>
+    <div class="work-label">
+      <span class="num">05</span>
+      <span class="label-text">Work 05</span>
     </div>
-
+    <video class="sec-video" src="./5.mp4" autoplay muted loop playsinline preload="metadata"></video>
     <div class="scroll-hint">scroll</div>
   </section>
 
-  <!-- ======== GALLERY : images フォルダの画像 全画面背景 ======== -->
+  <!-- ======== GALLERY ======== -->
   <section class="sec" id="gallery">
     <div class="sec-img" style="background-image: url('./images/743343acc60001a98960d8dd3879ae0a.jpg');"></div>
-    <div class="ov" style="background: linear-gradient(160deg, rgba(60,10,80,0.55) 0%, rgba(15,5,35,0.72) 100%);"></div>
+    <div class="ov" style="background: rgba(0,0,0,0.58);"></div>
 
-    <!-- images内のアイコンPNGを浮かせる -->
     <div class="float-icons" aria-hidden="true">
       <img src="./images/67f7b4a8cc5bed6fef6df5410125eea2.png" alt="">
       <img src="./images/22ae7c6674304fe17995387451e04d4c.png" alt="">
       <img src="./images/d22f91838b190bf7317ab8ab18d3028c.png" alt="">
     </div>
 
-    <div class="box" style="position: relative; z-index: 3;">
+    <div class="gallery-box">
       <span class="tag">Gallery</span>
       <h2>Images</h2>
       <p>imagesフォルダの素材を全画面背景として使用。<br>アイコンもふわふわと浮遊しています。</p>
@@ -410,19 +448,19 @@
     <div class="scroll-hint">scroll</div>
   </section>
 
-  <!-- ======== CONTACT : email.html をiframeで全画面背景 ======== -->
+  <!-- ======== CONTACT ======== -->
   <section class="sec" id="contact">
     <div class="email-bg-wrap">
-      <iframe src="./email.html" title="email template background" tabindex="-1" aria-hidden="true"></iframe>
+      <iframe src="./email.html" title="email background" tabindex="-1" aria-hidden="true"></iframe>
     </div>
-    <div class="ov" style="background: rgba(10,0,20,0.52);"></div>
+    <div class="ov" style="background: rgba(0,0,0,0.48);"></div>
 
-    <div class="box">
+    <div class="contact-box">
       <span class="tag">Contact</span>
       <h2>お気軽に<br>ご相談ください</h2>
       <p>LP制作・バナー・チラシデザイン・動画編集まで対応しています。<br>（背景はemail.htmlをそのまま全画面表示しています）</p>
       <div class="btn-row">
-        <a class="btn btn-pink" href="./email.html" target="_blank" rel="noopener">email.html を開く</a>
+        <a class="btn btn-white" href="./email.html" target="_blank" rel="noopener">email.html を開く</a>
         <a class="btn btn-outline" href="https://github.com/AkiraMihara1289/MyPortfolio" target="_blank" rel="noopener">GitHub ↗</a>
       </div>
     </div>
@@ -433,7 +471,6 @@
   </footer>
 
   <script>
-    // ビューポートに入った動画だけ再生し、離れたら一時停止（省エネ）
     const videos = document.querySelectorAll('video.sec-video');
     const vObs = new IntersectionObserver((entries) => {
       entries.forEach(e => {
@@ -443,7 +480,7 @@
           e.target.pause();
         }
       });
-    }, { threshold: 0.25 });
+    }, { threshold: 0.2 });
     videos.forEach(v => vObs.observe(v));
   </script>
 </body>
