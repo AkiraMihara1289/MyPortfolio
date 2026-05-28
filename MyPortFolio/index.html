@@ -65,13 +65,23 @@
       background: #000;
     }
 
-    /* 全画面背景動画 — contain で全体表示 */
+    /* 全画面背景動画 — contain で全体表示（横動画） */
     .sec-video {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: contain;
+      z-index: 0;
+    }
+
+    /* 縦長（A4）動画 — cover で横幅いっぱいに表示 */
+    .sec-video-cover {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       z-index: 0;
     }
 
@@ -365,16 +375,6 @@
     <div class="sec-img" style="background-image: url('./PF.png');"></div>
     <div class="ov" style="background: linear-gradient(160deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.7) 100%);"></div>
 
-    <div class="hero-box">
-      <span class="tag">Portfolio 2026</span>
-      <h1>Design & Create,<br><em>心を動かすデザインを。</em></h1>
-      <p>LP制作・Webバナー・チラシデザイン・動画編集まで、<br>幅広く手がけるWebクリエイター Lazzlly Lab. のポートフォリオです。</p>
-      <div class="btn-row">
-        <a class="btn btn-white" href="#v1">作品を見る</a>
-        <a class="btn btn-outline" href="https://github.com/AkiraMihara1289/MyPortfolio" target="_blank" rel="noopener">GitHub</a>
-      </div>
-    </div>
-
     <div class="scroll-hint">scroll</div>
   </section>
 
@@ -394,7 +394,7 @@
       <span class="num">02</span>
       <span class="label-text">Work 02</span>
     </div>
-    <video class="sec-video" src="./2.mp4" autoplay muted loop playsinline preload="metadata"></video>
+    <video class="sec-video-cover" src="./2.mp4" autoplay muted loop playsinline preload="metadata"></video>
     <div class="scroll-hint">scroll</div>
   </section>
 
@@ -404,7 +404,7 @@
       <span class="num">03</span>
       <span class="label-text">Work 03</span>
     </div>
-    <video class="sec-video" src="./3.mp4" autoplay muted loop playsinline preload="metadata"></video>
+    <video class="sec-video-cover" src="./3.mp4" autoplay muted loop playsinline preload="metadata"></video>
     <div class="scroll-hint">scroll</div>
   </section>
 
@@ -414,7 +414,7 @@
       <span class="num">04</span>
       <span class="label-text">Work 04</span>
     </div>
-    <video class="sec-video" src="./4.mp4" autoplay muted loop playsinline preload="metadata"></video>
+    <video class="sec-video-cover" src="./4.mp4" autoplay muted loop playsinline preload="metadata"></video>
     <div class="scroll-hint">scroll</div>
   </section>
 
@@ -425,6 +425,16 @@
       <span class="label-text">Work 05</span>
     </div>
     <video class="sec-video" src="./5.mp4" autoplay muted loop playsinline preload="metadata"></video>
+    <div class="scroll-hint">scroll</div>
+  </section>
+
+  <!-- ======== WORK 06 : 8.mp4 ======== -->
+  <section class="sec" id="v6">
+    <div class="work-label">
+      <span class="num">06</span>
+      <span class="label-text">Work 06</span>
+    </div>
+    <video class="sec-video" src="./8.mp4" autoplay muted loop playsinline preload="metadata"></video>
     <div class="scroll-hint">scroll</div>
   </section>
 
@@ -471,7 +481,7 @@
   </footer>
 
   <script>
-    const videos = document.querySelectorAll('video.sec-video');
+    const videos = document.querySelectorAll('video.sec-video, video.sec-video-cover');
     const vObs = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
