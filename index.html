@@ -3,349 +3,448 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MyPortfolio | 作品紹介LP</title>
-  <meta name="description" content="PF.png、1.mp4〜5.mp4、imagesフォルダ、email.html を使ったポートフォリオ紹介LP。">
+  <title>Portfolio | Lazzlly Lab.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #0e1220;
-      --panel: #151b2f;
-      --panel-2: #1e2742;
-      --text: #f3f6ff;
-      --muted: #b8c0da;
-      --accent: #7aa2ff;
-      --accent-2: #8de0d2;
-      --line: #2a3457;
-      --ok: #5ad89d;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Noto Sans JP", sans-serif;
+      color: #fff;
+      background: #0d0010;
+      overflow-x: hidden;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    a { color: inherit; text-decoration: none; }
 
-    html, body {
-      background: radial-gradient(1200px 700px at 100% -10%, #23315a 0%, transparent 45%), var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans JP", "Hiragino Sans", "Yu Gothic UI", sans-serif;
-      line-height: 1.65;
-      scroll-behavior: smooth;
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(1120px, 92vw);
-      margin: 0 auto;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(8px);
-      background: rgba(14, 18, 32, 0.7);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .nav {
+    /* ========= ナビ ========= */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 18px 40px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 14px 0;
-      gap: 14px;
+      background: rgba(10, 0, 18, 0.45);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
     }
 
-    .brand {
-      font-size: 1.05rem;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      color: var(--text);
+    .logo {
+      font-family: "Playfair Display", serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.06em;
+      color: #ffe6f8;
     }
 
-    .menu {
+    .nav-links {
       display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      font-size: 0.9rem;
+      gap: 28px;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.7);
     }
 
-    .hero {
-      padding: 56px 0 32px;
-    }
+    .nav-links a:hover { color: #ffb8e8; }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 24px;
-      align-items: center;
-    }
-
-    .hero h1 {
-      font-size: clamp(1.8rem, 4vw, 2.9rem);
-      line-height: 1.25;
-      margin-bottom: 12px;
-    }
-
-    .hero p {
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 6px 12px;
-      color: var(--ok);
-      background: rgba(90, 216, 157, 0.1);
-      font-size: 0.82rem;
-      margin-bottom: 12px;
-    }
-
-    .profile-box {
-      border: 1px solid var(--line);
-      background: linear-gradient(160deg, var(--panel) 0%, var(--panel-2) 100%);
-      border-radius: 18px;
+    /* ========= 共通セクション ========= */
+    .sec {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 500px;
       overflow: hidden;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .profile-box img {
+    /* 全画面背景動画 */
+    .sec-video {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
-      display: block;
       object-fit: cover;
-      max-height: 420px;
+      z-index: 0;
     }
 
-    section {
-      padding: 26px 0 18px;
+    /* 全画面背景画像 */
+    .sec-img {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
     }
 
-    .section-title {
-      font-size: 1.4rem;
-      margin-bottom: 12px;
+    /* グラデーションオーバーレイ */
+    .ov {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
     }
 
-    .section-desc {
-      color: var(--muted);
-      margin-bottom: 16px;
-      font-size: 0.95rem;
+    /* テキストパネル */
+    .box {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 40px 48px;
+      max-width: 760px;
+      width: 90%;
+      background: rgba(10, 0, 20, 0.38);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 24px;
     }
 
-    .video-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .card {
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      overflow: hidden;
-      background: var(--panel);
-    }
-
-    .card video {
-      width: 100%;
-      display: block;
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
-      background: #000;
-    }
-
-    .card-body {
-      padding: 10px 12px 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      font-size: 0.9rem;
-    }
-
-    .pill {
-      border: 1px solid var(--line);
+    .box .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #ffb8e8;
+      margin-bottom: 14px;
+      padding: 5px 14px;
+      border: 1px solid rgba(255,180,230,0.5);
       border-radius: 999px;
-      padding: 2px 8px;
-      color: var(--accent-2);
-      font-size: 0.76rem;
-      flex-shrink: 0;
     }
 
-    .asset-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
+    .box h1, .box h2 {
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      line-height: 1.22;
+      letter-spacing: 0.01em;
+      margin-bottom: 14px;
+      text-shadow: 0 4px 28px rgba(0,0,0,0.5);
     }
 
-    .asset-item {
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: var(--panel);
-      padding: 14px;
+    .box h2 { font-size: clamp(1.5rem, 3.5vw, 2.4rem); }
+
+    .box p {
+      font-size: clamp(0.9rem, 1.8vw, 1rem);
+      color: rgba(255,255,255,0.82);
+      line-height: 1.85;
+      margin-bottom: 22px;
     }
 
-    .asset-item h3 {
-      font-size: 1rem;
-      margin-bottom: 8px;
-    }
-
-    .asset-item p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-bottom: 10px;
-    }
-
-    .img-preview {
-      width: 100%;
-      border-radius: 10px;
-      border: 1px solid var(--line);
-      display: block;
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
     .btn {
       display: inline-block;
-      border: 1px solid var(--line);
-      background: #1c2642;
-      color: var(--text);
-      padding: 8px 12px;
-      border-radius: 10px;
-      font-size: 0.85rem;
+      padding: 12px 28px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      transition: 0.25s ease;
     }
 
+    .btn-pink {
+      background: linear-gradient(120deg, #ff6fc8 0%, #c47bff 100%);
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(255,100,200,0.4);
+    }
+
+    .btn-pink:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(255,100,200,0.5); }
+
+    .btn-outline {
+      border: 1.5px solid rgba(255,255,255,0.55);
+      color: #fff;
+    }
+
+    .btn-outline:hover { background: rgba(255,255,255,0.14); }
+
+    /* スクロール促し */
+    .scroll-hint {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .scroll-hint::after {
+      content: "";
+      display: block;
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+      animation: scrollLine 1.6s ease-in-out infinite;
+    }
+
+    @keyframes scrollLine {
+      0%, 100% { opacity: 0.5; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.2); }
+    }
+
+    /* 番号ラベル */
+    .num {
+      position: absolute;
+      top: 100px;
+      left: 44px;
+      z-index: 3;
+      font-family: "Playfair Display", serif;
+      font-size: 6rem;
+      font-weight: 700;
+      line-height: 1;
+      color: rgba(255,255,255,0.08);
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* images セクション: 浮かぶアイコン */
+    .float-icons {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .float-icons img {
+      position: absolute;
+      width: 80px;
+      opacity: 0.9;
+      filter: drop-shadow(0 4px 18px rgba(255,120,200,0.5));
+      animation: floatY 4s ease-in-out infinite;
+    }
+
+    .float-icons img:nth-child(1) { top: 22%; left: 10%; animation-delay: 0s; }
+    .float-icons img:nth-child(2) { top: 18%; right: 12%; animation-delay: 0.8s; }
+    .float-icons img:nth-child(3) { bottom: 24%; left: 50%; transform: translateX(-50%); animation-delay: 1.6s; }
+
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-16px); }
+    }
+
+    .float-icons img:nth-child(3) {
+      animation: floatY3 4s ease-in-out infinite 1.6s;
+    }
+    @keyframes floatY3 {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-16px); }
+    }
+
+    /* email iframe背景 */
+    .email-bg-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .email-bg-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      transform: scale(1.02);
+      transform-origin: center center;
+      pointer-events: none;
+      filter: saturate(1.1);
+    }
+
+    /* フッター */
     footer {
-      margin-top: 30px;
-      border-top: 1px solid var(--line);
-      padding: 20px 0 30px;
-      color: var(--muted);
-      font-size: 0.85rem;
+      background: #060009;
+      text-align: center;
+      padding: 40px 20px;
+      color: rgba(255,255,255,0.35);
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
     }
 
-    @media (max-width: 900px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .video-grid,
-      .asset-grid {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 600px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .box { padding: 28px 22px; }
+      .num { font-size: 4rem; }
+      .float-icons img { width: 56px; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="container nav">
-      <a class="brand" href="#top">AkiraMihara1289 / MyPortfolio</a>
-      <nav class="menu">
-        <a href="#videos">動画作品</a>
-        <a href="#assets">追加データ</a>
-        <a href="#contact">連絡導線</a>
-        <a href="https://github.com/AkiraMihara1289/MyPortfolio" target="_blank" rel="noopener noreferrer">GitHub</a>
-      </nav>
+
+  <!-- ナビ -->
+  <nav>
+    <span class="logo">Lazzlly Lab.</span>
+    <div class="nav-links">
+      <a href="#hero">Top</a>
+      <a href="#v1">Works</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+      <a href="https://github.com/AkiraMihara1289/MyPortfolio" target="_blank" rel="noopener">GitHub ↗</a>
     </div>
-  </header>
+  </nav>
 
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <div class="badge">ポートフォリオ紹介LP</div>
-          <h1>指定データを活用した<br>作品紹介ランディングページ</h1>
-          <p>
-            GitHub上の `PF.png`、`1.mp4`〜`5.mp4`、`images`フォルダ、`email.html` を使って構成したLPです。
-            動画はすべて無音再生で、ループ再生されます。
-          </p>
-          <a class="btn" href="#videos">動画セクションを見る</a>
-        </div>
-        <div class="profile-box">
-          <img src="./PF.png" alt="プロフィール画像 PF.png">
-        </div>
+  <!-- ======== HERO : PF.png 全画面背景 ======== -->
+  <section class="sec" id="hero">
+    <div class="sec-img" style="background-image: url('./PF.png');"></div>
+    <div class="ov" style="background: linear-gradient(160deg, rgba(120,30,80,0.52) 0%, rgba(30,0,60,0.65) 100%);"></div>
+
+    <div class="box">
+      <span class="tag">Portfolio 2026</span>
+      <h1>Design & Create,<br><em style="font-style:italic; color:#ffb8e8;">心を動かすデザインを。</em></h1>
+      <p>LP制作・Webバナー・チラシデザイン・動画編集まで、<br>幅広く手がけるWebクリエイター Lazzlly Lab. のポートフォリオです。</p>
+      <div class="btn-row">
+        <a class="btn btn-pink" href="#v1">作品を見る</a>
+        <a class="btn btn-outline" href="https://github.com/AkiraMihara1289/MyPortfolio" target="_blank" rel="noopener">GitHub</a>
       </div>
-    </section>
+    </div>
 
-    <section id="videos">
-      <div class="container">
-        <h2 class="section-title">動画作品（1.mp4〜5.mp4）</h2>
-        <p class="section-desc">全動画に `muted`・`loop`・`autoplay`・`playsinline` を設定しています。</p>
+    <div class="scroll-hint">scroll</div>
+  </section>
 
-        <div class="video-grid">
-          <article class="card">
-            <video src="./1.mp4" muted loop autoplay playsinline controls preload="metadata"></video>
-            <div class="card-body">
-              <strong>1.mp4</strong>
-              <span class="pill">Muted / Loop</span>
-            </div>
-          </article>
+  <!-- ======== WORK 01 : 1.mp4 全画面動画背景 ======== -->
+  <section class="sec" id="v1">
+    <span class="num">01</span>
+    <video class="sec-video" src="./1.mp4" autoplay muted loop playsinline preload="metadata"></video>
+    <div class="ov" style="background: linear-gradient(to bottom, rgba(60,0,40,0.45), rgba(20,0,35,0.6));"></div>
 
-          <article class="card">
-            <video src="./2.mp4" muted loop autoplay playsinline controls preload="metadata"></video>
-            <div class="card-body">
-              <strong>2.mp4</strong>
-              <span class="pill">Muted / Loop</span>
-            </div>
-          </article>
+    <div class="box">
+      <span class="tag">Work 01</span>
+      <h2>映像作品</h2>
+      <p>動画背景として全画面に使用。音声なし・ループ再生で常に流れています。</p>
+    </div>
 
-          <article class="card">
-            <video src="./3.mp4" muted loop autoplay playsinline controls preload="metadata"></video>
-            <div class="card-body">
-              <strong>3.mp4</strong>
-              <span class="pill">Muted / Loop</span>
-            </div>
-          </article>
+    <div class="scroll-hint">scroll</div>
+  </section>
 
-          <article class="card">
-            <video src="./4.mp4" muted loop autoplay playsinline controls preload="metadata"></video>
-            <div class="card-body">
-              <strong>4.mp4</strong>
-              <span class="pill">Muted / Loop</span>
-            </div>
-          </article>
+  <!-- ======== WORK 02 : 2.mp4 全画面動画背景 ======== -->
+  <section class="sec" id="v2">
+    <span class="num">02</span>
+    <video class="sec-video" src="./2.mp4" autoplay muted loop playsinline preload="metadata"></video>
+    <div class="ov" style="background: linear-gradient(to bottom, rgba(0,20,60,0.4), rgba(10,0,40,0.65));"></div>
 
-          <article class="card">
-            <video src="./5.mp4" muted loop autoplay playsinline controls preload="metadata"></video>
-            <div class="card-body">
-              <strong>5.mp4</strong>
-              <span class="pill">Muted / Loop</span>
-            </div>
-          </article>
-        </div>
+    <div class="box">
+      <span class="tag">Work 02</span>
+      <h2>映像作品</h2>
+      <p>動画背景として全画面に使用。音声なし・ループ再生で常に流れています。</p>
+    </div>
+
+    <div class="scroll-hint">scroll</div>
+  </section>
+
+  <!-- ======== WORK 03 : 3.mp4 全画面動画背景 ======== -->
+  <section class="sec" id="v3">
+    <span class="num">03</span>
+    <video class="sec-video" src="./3.mp4" autoplay muted loop playsinline preload="metadata"></video>
+    <div class="ov" style="background: linear-gradient(to bottom, rgba(50,0,80,0.4), rgba(15,0,30,0.65));"></div>
+
+    <div class="box">
+      <span class="tag">Work 03</span>
+      <h2>映像作品</h2>
+      <p>動画背景として全画面に使用。音声なし・ループ再生で常に流れています。</p>
+    </div>
+
+    <div class="scroll-hint">scroll</div>
+  </section>
+
+  <!-- ======== WORK 04 : 4.mp4 全画面動画背景 ======== -->
+  <section class="sec" id="v4">
+    <span class="num">04</span>
+    <video class="sec-video" src="./4.mp4" autoplay muted loop playsinline preload="metadata"></video>
+    <div class="ov" style="background: linear-gradient(to bottom, rgba(80,20,0,0.4), rgba(30,10,0,0.65));"></div>
+
+    <div class="box">
+      <span class="tag">Work 04</span>
+      <h2>映像作品</h2>
+      <p>動画背景として全画面に使用。音声なし・ループ再生で常に流れています。</p>
+    </div>
+
+    <div class="scroll-hint">scroll</div>
+  </section>
+
+  <!-- ======== WORK 05 : 5.mp4 全画面動画背景 ======== -->
+  <section class="sec" id="v5">
+    <span class="num">05</span>
+    <video class="sec-video" src="./5.mp4" autoplay muted loop playsinline preload="metadata"></video>
+    <div class="ov" style="background: linear-gradient(to bottom, rgba(0,50,60,0.4), rgba(0,15,30,0.65));"></div>
+
+    <div class="box">
+      <span class="tag">Work 05</span>
+      <h2>映像作品</h2>
+      <p>動画背景として全画面に使用。音声なし・ループ再生で常に流れています。</p>
+    </div>
+
+    <div class="scroll-hint">scroll</div>
+  </section>
+
+  <!-- ======== GALLERY : images フォルダの画像 全画面背景 ======== -->
+  <section class="sec" id="gallery">
+    <div class="sec-img" style="background-image: url('./images/743343acc60001a98960d8dd3879ae0a.jpg');"></div>
+    <div class="ov" style="background: linear-gradient(160deg, rgba(60,10,80,0.55) 0%, rgba(15,5,35,0.72) 100%);"></div>
+
+    <!-- images内のアイコンPNGを浮かせる -->
+    <div class="float-icons" aria-hidden="true">
+      <img src="./images/67f7b4a8cc5bed6fef6df5410125eea2.png" alt="">
+      <img src="./images/22ae7c6674304fe17995387451e04d4c.png" alt="">
+      <img src="./images/d22f91838b190bf7317ab8ab18d3028c.png" alt="">
+    </div>
+
+    <div class="box" style="position: relative; z-index: 3;">
+      <span class="tag">Gallery</span>
+      <h2>Images</h2>
+      <p>imagesフォルダの素材を全画面背景として使用。<br>アイコンもふわふわと浮遊しています。</p>
+    </div>
+
+    <div class="scroll-hint">scroll</div>
+  </section>
+
+  <!-- ======== CONTACT : email.html をiframeで全画面背景 ======== -->
+  <section class="sec" id="contact">
+    <div class="email-bg-wrap">
+      <iframe src="./email.html" title="email template background" tabindex="-1" aria-hidden="true"></iframe>
+    </div>
+    <div class="ov" style="background: rgba(10,0,20,0.52);"></div>
+
+    <div class="box">
+      <span class="tag">Contact</span>
+      <h2>お気軽に<br>ご相談ください</h2>
+      <p>LP制作・バナー・チラシデザイン・動画編集まで対応しています。<br>（背景はemail.htmlをそのまま全画面表示しています）</p>
+      <div class="btn-row">
+        <a class="btn btn-pink" href="./email.html" target="_blank" rel="noopener">email.html を開く</a>
+        <a class="btn btn-outline" href="https://github.com/AkiraMihara1289/MyPortfolio" target="_blank" rel="noopener">GitHub ↗</a>
       </div>
-    </section>
-
-    <section id="assets">
-      <div class="container">
-        <h2 class="section-title">追加データ紹介</h2>
-        <p class="section-desc">`images` フォルダと `email.html` をLP内から確認できるようにしています。</p>
-
-        <div class="asset-grid">
-          <article class="asset-item">
-            <h3>images フォルダ</h3>
-            <p>メールテンプレートで使用されている画像アセットの例。</p>
-            <img class="img-preview" src="./images/743343acc60001a98960d8dd3879ae0a.jpg" alt="images フォルダ内のプレビュー">
-          </article>
-
-          <article class="asset-item" id="contact">
-            <h3>email.html</h3>
-            <p>既存のメールHTMLテンプレートです。別タブで確認できます。</p>
-            <a class="btn" href="./email.html" target="_blank" rel="noopener noreferrer">email.html を開く</a>
-          </article>
-        </div>
-      </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
   <footer>
-    <div class="container">
-      <p>© 2026 AkiraMihara1289 / MyPortfolio</p>
-    </div>
+    <p>© 2026 Lazzlly Lab. / AkiraMihara1289 — All rights reserved.</p>
   </footer>
+
+  <script>
+    // ビューポートに入った動画だけ再生し、離れたら一時停止（省エネ）
+    const videos = document.querySelectorAll('video.sec-video');
+    const vObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.play().catch(() => {});
+        } else {
+          e.target.pause();
+        }
+      });
+    }, { threshold: 0.25 });
+    videos.forEach(v => vObs.observe(v));
+  </script>
 </body>
 </html>
