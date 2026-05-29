@@ -9,113 +9,157 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: "Noto Sans JP", sans-serif; color: #fff; background: #000; overflow-x: hidden; }
+    body { font-family: "Noto Sans JP", sans-serif; background: #fff; overflow-x: hidden; }
     a { color: inherit; text-decoration: none; }
 
+    /* ===== NAV ===== */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 16px 40px;
+      padding: 15px 40px;
       display: flex; align-items: center; justify-content: space-between;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.65);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(255,255,255,0.07);
+      color: #fff;
     }
     .logo { font-family: "Playfair Display", serif; font-size: 1.1rem; letter-spacing: 0.06em; }
-    .nav-links { display: flex; gap: 26px; font-size: 0.73rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+    .nav-links { display: flex; gap: 26px; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
     .nav-links a:hover { color: #fff; transition: color 0.2s; }
 
-    /* full-screen section */
-    .sec {
+    /* ===== HERO (PF.png) — cover で全画面 ===== */
+    .hero-sec {
       position: relative; width: 100%; height: 100svh;
-      overflow: hidden; background: #000; display: block;
+      overflow: hidden; background: #111;
     }
-    .sec-video, .sec-img {
+    .hero-sec .sec-img {
       position: absolute; inset: 0;
       width: 100%; height: 100%;
-      object-fit: cover;
-      z-index: 0;
+      object-fit: cover; z-index: 0;
     }
-
-    .scroll-hint {
+    .scroll-hint-dark {
       position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%);
-      z-index: 5; font-size: 0.6rem; letter-spacing: 0.26em; text-transform: uppercase;
-      color: rgba(255,255,255,0.32);
+      z-index: 5; font-size: 0.59rem; letter-spacing: 0.26em; text-transform: uppercase;
+      color: rgba(255,255,255,0.38);
       display: flex; flex-direction: column; align-items: center; gap: 6px;
     }
-    .scroll-hint::after {
+    .scroll-hint-dark::after {
       content: ""; display: block; width: 1px; height: 30px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.32), transparent);
-      animation: lineAnim 1.8s ease-in-out infinite;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.38), transparent);
+      animation: lineW 1.8s ease-in-out infinite;
     }
-    @keyframes lineAnim { 0%,100%{opacity:.32} 50%{opacity:.85} }
 
+    /* ===== VIDEO SECTION — contain + 白背景 ===== */
+    /*
+      縦長（A4）動画: 高さいっぱいに収まり、左右に白い余白が出る
+      横長動画:       幅いっぱいに収まり、上下に白い余白が出る（最小限）
+    */
+    .vid-sec {
+      position: relative; width: 100%;
+      background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    /* 縦長動画 → セクション高を画面高に固定し contain で全体表示 */
+    .vid-sec video {
+      display: block;
+      max-width: 100%;
+      max-height: 100svh;
+      width: 100%;
+      height: 100svh;
+      object-fit: contain;
+    }
+
+    /* work label — 白背景上なので濃いめのグレー */
     .work-label {
-      position: absolute; top: 68px; left: 36px; z-index: 3;
+      position: absolute; top: 64px; left: 32px; z-index: 3;
       pointer-events: none; user-select: none;
     }
     .work-label .num {
       font-family: "Playfair Display", serif; font-size: 4.5rem; font-weight: 700;
-      line-height: 1; color: rgba(255,255,255,0.07);
+      line-height: 1; color: rgba(0,0,0,0.08);
     }
     .work-label .lbl {
-      font-size: 0.6rem; letter-spacing: 0.24em; text-transform: uppercase;
-      color: rgba(255,255,255,0.26); margin-top: 2px;
+      font-size: 0.58rem; letter-spacing: 0.24em; text-transform: uppercase;
+      color: rgba(0,0,0,0.28); margin-top: 2px;
     }
 
-    /* YouTube section */
-    .yt-sec { width: 100%; background: #060606; }
-    .yt-header {
-      padding: 40px 40px 28px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+    /* scroll hint — 白背景上 */
+    .scroll-hint {
+      position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+      z-index: 5; font-size: 0.58rem; letter-spacing: 0.26em; text-transform: uppercase;
+      color: rgba(0,0,0,0.3);
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
     }
+    .scroll-hint::after {
+      content: ""; display: block; width: 1px; height: 28px;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.3), transparent);
+      animation: lineAnim 1.8s ease-in-out infinite;
+    }
+    @keyframes lineAnim { 0%,100%{opacity:.3} 50%{opacity:.75} }
+    @keyframes lineW    { 0%,100%{opacity:.38} 50%{opacity:.9} }
+
+    /* ===== IMAGE SECTION (10.png) — cover ===== */
+    .img-sec {
+      position: relative; width: 100%; height: 100svh;
+      overflow: hidden; background: #fff;
+    }
+    .img-sec img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; z-index: 0;
+    }
+
+    /* ===== YOUTUBE ===== */
+    .yt-sec { width: 100%; background: #fff; border-top: 1px solid rgba(0,0,0,0.07); }
+    .yt-header { padding: 36px 40px 24px; border-bottom: 1px solid rgba(0,0,0,0.07); }
     .yt-header h2 {
       font-family: "Playfair Display", serif;
-      font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 700;
-      margin-bottom: 5px;
+      font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 700; color: #111;
+      margin-bottom: 4px;
     }
-    .yt-header p { font-size: 0.8rem; color: rgba(255,255,255,0.38); letter-spacing: 0.06em; }
-    .yt-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      border-top: none;
-    }
+    .yt-header p { font-size: 0.78rem; color: rgba(0,0,0,0.42); letter-spacing: 0.06em; }
+    .yt-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
     .yt-item {
       position: relative; padding-top: 56.25%;
-      border-right: 1px solid rgba(255,255,255,0.06);
+      border-right: 1px solid rgba(0,0,0,0.07); background: #000;
     }
     .yt-item:last-child { border-right: none; }
     .yt-item iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
-    /* PDF */
-    .pdf-sec { position: relative; width: 100%; height: 100svh; background: #000; overflow: hidden; }
+    /* ===== PDF ===== */
+    .pdf-sec { position: relative; width: 100%; height: 100svh; background: #f5f5f5; overflow: hidden; }
     .pdf-bar {
-      position: absolute; top: 0; left: 0; right: 0; height: 56px;
-      background: rgba(0,0,0,0.8); backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,0.07);
+      position: absolute; top: 0; left: 0; right: 0; height: 54px;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 36px; z-index: 10;
     }
-    .pdf-bar span { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.36); }
-    .pdf-sec iframe { position: absolute; top: 56px; left: 0; width: 100%; height: calc(100% - 56px); border: 0; }
-    .btn { display: inline-block; padding: 8px 20px; border-radius: 2px; font-size: 0.72rem; letter-spacing: 0.1em; transition: 0.2s; }
-    .btn-outline { border: 1px solid rgba(255,255,255,0.38); color: #fff; }
-    .btn-outline:hover { background: rgba(255,255,255,0.08); }
+    .pdf-bar span { font-size: 0.67rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(0,0,0,0.4); }
+    .pdf-sec iframe { position: absolute; top: 54px; left: 0; width: 100%; height: calc(100% - 54px); border: 0; }
 
+    .btn { display: inline-block; padding: 7px 18px; border-radius: 2px; font-size: 0.7rem; letter-spacing: 0.1em; transition: 0.2s; }
+    .btn-dark { border: 1px solid rgba(0,0,0,0.35); color: #111; }
+    .btn-dark:hover { background: rgba(0,0,0,0.06); }
+
+    /* ===== FOOTER ===== */
     footer {
-      background: #000; text-align: center; padding: 28px 20px;
-      color: rgba(255,255,255,0.18); font-size: 0.7rem; letter-spacing: 0.08em;
-      border-top: 1px solid rgba(255,255,255,0.05);
+      background: #fff; text-align: center; padding: 26px 20px;
+      color: rgba(0,0,0,0.28); font-size: 0.68rem; letter-spacing: 0.08em;
+      border-top: 1px solid rgba(0,0,0,0.07);
     }
 
+    /* ===== MOBILE ===== */
     @media (max-width: 768px) {
       nav { padding: 11px 16px; }
       .nav-links { display: none; }
-      .work-label { left: 14px; top: 56px; }
-      .work-label .num { font-size: 2.8rem; }
+      .work-label { left: 12px; top: 54px; }
+      .work-label .num { font-size: 2.6rem; }
       .yt-grid { grid-template-columns: 1fr; }
-      .yt-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+      .yt-item { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.07); }
       .yt-item:last-child { border-bottom: none; }
-      .yt-header { padding: 28px 16px 20px; }
-      .pdf-bar { padding: 0 16px; }
+      .yt-header { padding: 24px 16px 18px; }
+      .pdf-bar { padding: 0 14px; }
     }
   </style>
 </head>
@@ -132,88 +176,101 @@
   </div>
 </nav>
 
-<!-- PF.png -->
-<section id="top" class="sec">
-  <img class="sec-img" src="https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/PF.png" alt="Lazzlly Lab." loading="eager">
-  <div class="scroll-hint">scroll</div>
+<!-- PF.png — Hero (cover) -->
+<section id="top" class="hero-sec">
+  <img class="sec-img"
+       src="https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/PF.png"
+       alt="Lazzlly Lab." loading="eager">
+  <div class="scroll-hint-dark">scroll</div>
 </section>
 
 <!-- 1.mp4 -->
-<section id="work01" class="sec">
-  <video class="sec-video" src="https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/1.mp4" muted loop playsinline preload="none"></video>
+<div id="work01" class="vid-sec">
+  <video src="https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/1.mp4"
+         muted loop playsinline preload="none"></video>
   <div class="work-label"><div class="num">01</div><div class="lbl">Work</div></div>
   <div class="scroll-hint">scroll</div>
-</section>
+</div>
 
 <!-- 2.mp4 -->
-<section id="work02" class="sec">
-  <video class="sec-video" src="https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/2.mp4" muted loop playsinline preload="none"></video>
+<div id="work02" class="vid-sec">
+  <video src="https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/2.mp4"
+         muted loop playsinline preload="none"></video>
   <div class="work-label"><div class="num">02</div><div class="lbl">Work</div></div>
   <div class="scroll-hint">scroll</div>
-</section>
+</div>
 
 <!-- 3.mp4 -->
-<section id="work03" class="sec">
-  <video class="sec-video" src="https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/3.mp4" muted loop playsinline preload="none"></video>
+<div id="work03" class="vid-sec">
+  <video src="https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/3.mp4"
+         muted loop playsinline preload="none"></video>
   <div class="work-label"><div class="num">03</div><div class="lbl">Work</div></div>
   <div class="scroll-hint">scroll</div>
-</section>
+</div>
 
 <!-- 4.mp4 -->
-<section id="work04" class="sec">
-  <video class="sec-video" src="https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/4.mp4" muted loop playsinline preload="none"></video>
+<div id="work04" class="vid-sec">
+  <video src="https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/4.mp4"
+         muted loop playsinline preload="none"></video>
   <div class="work-label"><div class="num">04</div><div class="lbl">Work</div></div>
   <div class="scroll-hint">scroll</div>
-</section>
+</div>
 
 <!-- 5.mp4 -->
-<section id="work05" class="sec">
-  <video class="sec-video" src="https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/5.mp4" muted loop playsinline preload="none"></video>
+<div id="work05" class="vid-sec">
+  <video src="https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/5.mp4"
+         muted loop playsinline preload="none"></video>
   <div class="work-label"><div class="num">05</div><div class="lbl">Work</div></div>
   <div class="scroll-hint">scroll</div>
-</section>
+</div>
 
 <!-- 6.mp4 -->
-<section id="work06" class="sec">
-  <video class="sec-video" src="https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/6.mp4" muted loop playsinline preload="none"></video>
+<div id="work06" class="vid-sec">
+  <video src="https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/6.mp4"
+         muted loop playsinline preload="none"></video>
   <div class="work-label"><div class="num">06</div><div class="lbl">Work</div></div>
   <div class="scroll-hint">scroll</div>
-</section>
+</div>
 
 <!-- 7.mp4 -->
-<section id="work07" class="sec">
-  <video class="sec-video" src="https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/7.mp4" muted loop playsinline preload="none"></video>
+<div id="work07" class="vid-sec">
+  <video src="https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/7.mp4"
+         muted loop playsinline preload="none"></video>
   <div class="work-label"><div class="num">07</div><div class="lbl">Work</div></div>
   <div class="scroll-hint">scroll</div>
-</section>
+</div>
 
 <!-- 8.mp4 -->
-<section id="work08" class="sec">
-  <video class="sec-video" src="https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/8.mp4" muted loop playsinline preload="none"></video>
+<div id="work08" class="vid-sec">
+  <video src="https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/8.mp4"
+         muted loop playsinline preload="none"></video>
   <div class="work-label"><div class="num">08</div><div class="lbl">Work</div></div>
   <div class="scroll-hint">scroll</div>
-</section>
+</div>
 
 <!-- 9.mp4 -->
-<section id="work09" class="sec">
-  <video class="sec-video" src="https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/9.mp4" muted loop playsinline preload="none"></video>
+<div id="work09" class="vid-sec">
+  <video src="https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/9.mp4"
+         muted loop playsinline preload="none"></video>
   <div class="work-label"><div class="num">09</div><div class="lbl">Work</div></div>
   <div class="scroll-hint">scroll</div>
-</section>
+</div>
 
-<!-- 10.png -->
-<section id="gallery" class="sec">
-  <img class="sec-img" src="https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/10.png" alt="Gallery" loading="lazy">
+<!-- 10.png — Gallery (cover) -->
+<section id="gallery" class="img-sec">
+  <img src="https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/10.png"
+       alt="Gallery" loading="lazy">
   <div class="work-label"><div class="num">10</div><div class="lbl">Gallery</div></div>
   <div class="scroll-hint">scroll</div>
 </section>
 
 <!-- 11.mp4 -->
-<section id="work11" class="sec">
-  <video class="sec-video" src="https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/11.mp4" muted loop playsinline preload="none"></video>
+<div id="work11" class="vid-sec">
+  <video src="https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/11.mp4"
+         muted loop playsinline preload="none"></video>
   <div class="work-label"><div class="num">11</div><div class="lbl">Work</div></div>
   <div class="scroll-hint">scroll</div>
-</section>
+</div>
 
 <!-- YouTube -->
 <div id="yt" class="yt-sec">
@@ -223,13 +280,19 @@
   </div>
   <div class="yt-grid">
     <div class="yt-item">
-      <iframe src="https://www.youtube.com/embed/GNHDcUYDhSk" title="Video 01" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/GNHDcUYDhSk" title="Video 01"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
     </div>
     <div class="yt-item">
-      <iframe src="https://www.youtube.com/embed/oXhrMMxpMfw" title="Video 02" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/oXhrMMxpMfw" title="Video 02"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
     </div>
     <div class="yt-item">
-      <iframe src="https://www.youtube.com/embed/CLzW-r_4Ve4" title="Video 03" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/CLzW-r_4Ve4" title="Video 03"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
     </div>
   </div>
 </div>
@@ -238,9 +301,12 @@
 <section id="resume" class="pdf-sec">
   <div class="pdf-bar">
     <span>Resume / Portfolio PDF</span>
-    <a href="https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/12.pdf" download="portfolio.pdf" class="btn btn-outline">Download PDF</a>
+    <a href="https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/12.pdf"
+       download="portfolio.pdf" class="btn btn-dark">Download PDF</a>
   </div>
-  <iframe src="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/12.pdf&embedded=true" title="Portfolio PDF" allowfullscreen></iframe>
+  <iframe
+    src="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/12.pdf&embedded=true"
+    title="Portfolio PDF" allowfullscreen></iframe>
 </section>
 
 <footer>
@@ -248,13 +314,14 @@
 </footer>
 
 <script>
+  // 画面内に入ったら再生、出たら停止
   const videos = document.querySelectorAll("video");
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) e.target.play().catch(()=>{});
       else e.target.pause();
     });
-  }, { threshold: 0.25 });
+  }, { threshold: 0.2 });
   videos.forEach(v => obs.observe(v));
 </script>
 </body>
