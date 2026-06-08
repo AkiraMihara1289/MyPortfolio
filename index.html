@@ -7,18 +7,11 @@
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    :root {
-      --bg: #0a0a0a;
-      --accent: rgba(255,255,255,0.06);
-      --text: #e8e8e8;
-      --muted: rgba(255,255,255,0.35);
-    }
-
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--bg);
-      color: var(--text);
+      background: #fff;
+      color: #111;
       font-family: 'Helvetica Neue', 'Hiragino Sans', Arial, sans-serif;
     }
 
@@ -30,17 +23,16 @@
       padding: 22px 40px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, transparent 100%);
+      background: linear-gradient(to bottom, rgba(255,255,255,0.85) 0%, transparent 100%);
       pointer-events: none;
     }
 
     header h1 {
       font-size: 0.8rem;
-      font-weight: 300;
+      font-weight: 400;
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: rgba(0,0,0,0.4);
     }
 
     /* ── Each video section ── */
@@ -50,7 +42,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #000;
+      background: #fff;
       position: relative;
       overflow: hidden;
     }
@@ -59,6 +51,7 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
+      background: #fff;
       display: block;
     }
 
@@ -66,7 +59,7 @@
     .yt-section {
       width: 100%;
       min-height: 100vh;
-      background: #050505;
+      background: #f7f7f7;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -80,7 +73,7 @@
       font-weight: 300;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: rgba(0,0,0,0.45);
     }
 
     .yt-grid {
@@ -98,7 +91,7 @@
     .yt-item {
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 6px 32px rgba(0,0,0,0.7);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
     }
 
     .yt-item iframe {
@@ -108,9 +101,7 @@
       display: block;
     }
 
-    .divider { display: none; }
-
-    /* ── Side scroll indicator dots ── */
+    /* ── Side navigation dots ── */
     #dot-nav {
       position: fixed;
       right: 16px;
@@ -126,24 +117,24 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.2);
+      background: rgba(0,0,0,0.18);
       cursor: pointer;
       transition: background 0.3s, transform 0.3s;
       border: none;
     }
 
     .dnav.active {
-      background: #fff;
+      background: #222;
       transform: scale(1.5);
     }
 
-    /* ── Progress line ── */
+    /* ── Scroll progress bar ── */
     #topbar {
       position: fixed;
       top: 0; left: 0;
       height: 2px;
       width: 0%;
-      background: rgba(255,255,255,0.5);
+      background: rgba(0,0,0,0.35);
       z-index: 1000;
       transition: width 0.1s;
     }
@@ -181,68 +172,50 @@
   const dotNav = document.getElementById('dot-nav');
   const topbar = document.getElementById('topbar');
 
-  const sections = [];   // {el, type}
+  const sections = [];
   const dots = [];
 
-  /* ── Build video section ── */
   function makeVideoSection(src) {
     const section = document.createElement('section');
     section.className = 'video-section';
-
     const video = document.createElement('video');
     video.src = RAW + src;
     video.muted = true;
     video.loop = true;
     video.playsInline = true;
     video.preload = 'none';
-
     section.appendChild(video);
     return { el: section, type: 'video', video };
   }
 
-  /* ── Build YouTube section ── */
   function makeYTSection() {
     const section = document.createElement('section');
     section.className = 'yt-section';
-
     const heading = document.createElement('h2');
     heading.textContent = 'YouTube Works';
     section.appendChild(heading);
-
     const grid = document.createElement('div');
     grid.className = 'yt-grid';
-
     YT_IDS.forEach(id => {
       const item = document.createElement('div');
       item.className = 'yt-item';
       const iframe = document.createElement('iframe');
-      iframe.dataset.src = `https://www.youtube.com/embed/${id}`;
+      iframe.dataset.src = 'https://www.youtube.com/embed/' + id;
       iframe.allow = 'accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
       iframe.allowFullscreen = true;
       item.appendChild(iframe);
       grid.appendChild(item);
     });
-
     section.appendChild(grid);
     return { el: section, type: 'youtube' };
   }
 
-  /* ── Assemble page ── */
   function addSection(s) {
-    if (sections.length > 0) {
-      const div = document.createElement('div');
-      div.className = 'divider';
-      main.appendChild(div);
-    }
     main.appendChild(s.el);
     sections.push(s);
-
     const btn = document.createElement('button');
     btn.className = 'dnav';
-    btn.title = `Section ${sections.length}`;
-    btn.addEventListener('click', () => {
-      s.el.scrollIntoView({ behavior: 'smooth' });
-    });
+    btn.addEventListener('click', () => s.el.scrollIntoView({ behavior: 'smooth' }));
     dotNav.appendChild(btn);
     dots.push(btn);
   }
@@ -251,7 +224,6 @@
   addSection(makeYTSection());
   VIDEOS_AFTER_YT.forEach(f => addSection(makeVideoSection(f)));
 
-  /* ── Intersection Observer: play/pause videos ── */
   const videoObs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       const video = entry.target.querySelector('video');
@@ -264,7 +236,6 @@
     });
   }, { threshold: 0.4 });
 
-  /* ── Intersection Observer: lazy-load YouTube iframes ── */
   const ytObs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
@@ -276,7 +247,6 @@
     });
   }, { threshold: 0.1 });
 
-  /* ── Intersection Observer: active dot highlight ── */
   const dotObs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
@@ -292,11 +262,9 @@
     dotObs.observe(s.el);
   });
 
-  /* ── Scroll progress bar ── */
   window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
     const total = document.body.scrollHeight - window.innerHeight;
-    topbar.style.width = (total > 0 ? (scrolled / total) * 100 : 0) + '%';
+    topbar.style.width = (total > 0 ? (window.scrollY / total) * 100 : 0) + '%';
   }, { passive: true });
 </script>
 </body>
