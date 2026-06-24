@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akira Mihara – Portfolio</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #0a0a0a;
+      color: #fff;
+      font-family: 'Helvetica Neue', 'Hiragino Sans', Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── Progress Bar ── */
+    #topbar {
+      position: fixed; top: 0; left: 0;
+      height: 2px; width: 0%;
+      background: linear-gradient(90deg, #666, #fff);
+      z-index: 1001;
+      transition: width 0.05s linear;
+    }
+
+    /* ── Header ── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 999;
+      padding: 20px 32px;
+      background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%);
+      pointer-events: none;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    header h1 {
+      font-size: 0.7rem; font-weight: 300;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+    header span {
+      font-size: 0.65rem; font-weight: 300;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* ── Dot Navigation ── */
+    #dot-nav {
+      position: fixed; right: 16px; top: 50%;
+      transform: translateY(-50%);
+      display: flex; flex-direction: column; gap: 10px;
+      z-index: 998;
+    }
+    .dnav {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      cursor: pointer; transition: all 0.4s ease;
+      border: none; padding: 0;
+    }
+    .dnav.active {
+      background: #fff;
+      transform: scale(1.8);
+      box-shadow: 0 0 8px rgba(255,255,255,0.4);
+    }
+
+    /* ── Hero ── */
+    .hero {
+      width: 100%; height: 100vh; height: 100svh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      background: #0a0a0a;
+      position: relative;
+    }
+    .hero h2 {
+      font-size: clamp(2rem, 6vw, 5rem);
+      font-weight: 100; letter-spacing: 0.15em;
+      color: #fff;
+      animation: fadeUp 1.2s ease both;
+    }
+    .hero p {
+      margin-top: 16px;
+      font-size: 0.8rem; font-weight: 300;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      animation: fadeUp 1.2s 0.3s ease both;
+    }
+    .hero .scroll-hint {
+      position: absolute; bottom: 40px;
+      font-size: 0.65rem; letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.2);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 0.5; }
+    }
+
+    /* ── Video Section ── */
+    .video-section {
+      width: 100%; height: 100vh; height: 100svh;
+      display: flex; align-items: center; justify-content: center;
+      background: #0a0a0a;
+      overflow: hidden;
+      position: relative;
+    }
+    .video-section video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+    .video-section video.visible { opacity: 1; }
+
+    .video-label {
+      position: absolute; bottom: 32px; left: 32px;
+      font-size: 0.65rem; font-weight: 300;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      opacity: 0; transform: translateY(10px);
+      transition: all 0.6s ease 0.3s;
+    }
+    .video-section.in-view .video-label {
+      opacity: 1; transform: translateY(0);
+    }
+
+    /* ── YouTube Section ── */
+    .yt-section {
+      width: 100%;
+      min-height: 100vh; min-height: 100svh;
+      background: #111;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 80px 32px; gap: 40px;
+    }
+    .yt-section h2 {
+      font-size: clamp(0.9rem, 2.5vw, 1.4rem);
+      font-weight: 200; letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+    .yt-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px; width: 100%; max-width: 1100px;
+    }
+    @media (max-width: 640px) {
+      .yt-grid { grid-template-columns: 1fr; }
+      .yt-section { padding: 60px 16px; }
+    }
+    .yt-item {
+      border-radius: 8px; overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .yt-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.7);
+    }
+    .yt-item iframe {
+      width: 100%; aspect-ratio: 16/9;
+      border: none; display: block;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 60px 32px;
+      text-align: center;
+      background: #0a0a0a;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    footer p {
+      font-size: 0.65rem; font-weight: 300;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.2);
+    }
+
+    /* ── Divider ── */
+    .section-divider {
+      width: 40px; height: 1px;
+      background: rgba(255,255,255,0.08);
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+
+<div id="topbar"></div>
+
+<header>
+  <h1>Akira Mihara &nbsp;/&nbsp; Portfolio</h1>
+  <span>Selected Works</span>
+</header>
+
+<div id="dot-nav"></div>
+
+<main id="main">
+  <section class="hero">
+    <h2>Akira Mihara</h2>
+    <p>Portfolio</p>
+    <span class="scroll-hint">scroll to explore ↓</span>
+  </section>
+</main>
+
+<footer>
+  <p>© 2024 Akira Mihara — All Rights Reserved</p>
+</footer>
+
+<script>
+  const RAW = 'https://raw.githubusercontent.com/AkiraMihara1289/MyPortfolio/main/';
+
+  const VIDEOS = [
+    '1.mp4','2.mp4','3.mp4','4.mp4','5.mp4','6.mp4',
+    '7.mp4','8.mp4','8-1.mp4','9.mp4','10.mp4','11.mp4','12.mp4'
+  ];
+  const VIDEOS_AFTER = ['13.mp4'];
+
+  const YT_IDS = ['GNHDcUYDhSk','oXhrMMxpMfw','CLzW-r_4Ve4','ZGJObgGDjmI'];
+
+  const main = document.getElementById('main');
+  const dotNav = document.getElementById('dot-nav');
+  const topbar = document.getElementById('topbar');
+
+  const sections = [];
+  const dots = [];
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function makeVideoSection(src, index) {
+    const section = document.createElement('section');
+    section.className = 'video-section';
+    const video = document.createElement('video');
+    video.src = RAW + src;
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.preload = 'none';
+    section.appendChild(video);
+    const label = document.createElement('div');
+    label.className = 'video-label';
+    label.textContent = 'Work ' + pad(index);
+    section.appendChild(label);
+    return { el: section, type: 'video' };
+  }
+
+  function makeYTSection() {
+    const section = document.createElement('section');
+    section.className = 'yt-section';
+    const h = document.createElement('h2');
+    h.textContent = 'YouTube Works';
+    section.appendChild(h);
+    const grid = document.createElement('div');
+    grid.className = 'yt-grid';
+    YT_IDS.forEach(id => {
+      const item = document.createElement('div');
+      item.className = 'yt-item';
+      const iframe = document.createElement('iframe');
+      iframe.dataset.src = 'https://www.youtube.com/embed/' + id;
+      iframe.allow = 'accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+      item.appendChild(iframe);
+      grid.appendChild(item);
+    });
+    section.appendChild(grid);
+    return { el: section, type: 'youtube' };
+  }
+
+  function addSection(s) {
+    main.appendChild(s.el);
+    sections.push(s);
+    const btn = document.createElement('button');
+    btn.className = 'dnav';
+    btn.addEventListener('click', () => s.el.scrollIntoView({ behavior: 'smooth' }));
+    dotNav.appendChild(btn);
+    dots.push(btn);
+  }
+
+  // Hero dot
+  const heroSection = document.querySelector('.hero');
+  sections.push({ el: heroSection, type: 'hero' });
+  const heroBtn = document.createElement('button');
+  heroBtn.className = 'dnav active';
+  heroBtn.addEventListener('click', () => heroSection.scrollIntoView({ behavior: 'smooth' }));
+  dotNav.appendChild(heroBtn);
+  dots.push(heroBtn);
+
+  let workIndex = 1;
+  VIDEOS.forEach(f => { addSection(makeVideoSection(f, workIndex)); workIndex++; });
+  addSection(makeYTSection());
+  VIDEOS_AFTER.forEach(f => { addSection(makeVideoSection(f, workIndex)); workIndex++; });
+
+  // Observers
+  const videoObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const v = entry.target.querySelector('video');
+      if (!v) return;
+      if (entry.isIntersecting) {
+        v.play().catch(() => {});
+        v.classList.add('visible');
+        entry.target.classList.add('in-view');
+      } else {
+        v.pause();
+        v.classList.remove('visible');
+        entry.target.classList.remove('in-view');
+      }
+    });
+  }, { threshold: 0.4 });
+
+  const ytObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.querySelectorAll('iframe[data-src]').forEach(iframe => {
+        iframe.src = iframe.dataset.src;
+        delete iframe.dataset.src;
+      });
+      ytObs.unobserve(entry.target);
+    });
+  }, { threshold: 0.05 });
+
+  const dotObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const idx = sections.findIndex(s => s.el === entry.target);
+      if (idx < 0) return;
+      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    });
+  }, { threshold: 0.4 });
+
+  sections.forEach(s => {
+    if (s.type === 'video') videoObs.observe(s.el);
+    if (s.type === 'youtube') ytObs.observe(s.el);
+    dotObs.observe(s.el);
+  });
+
+  // Scroll progress
+  window.addEventListener('scroll', () => {
+    const total = document.body.scrollHeight - window.innerHeight;
+    topbar.style.width = (total > 0 ? (window.scrollY / total) * 100 : 0) + '%';
+  }, { passive: true });
+</script>
+</body>
+</html>
